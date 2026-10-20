@@ -1,4 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap');
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/bodoni-moda-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/bodoni-moda-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/dm-sans-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/dm-sans-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/dm-sans-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 :root{--blue:#dcecf2;--cream:#faf9f5;--ink:#142b36;--muted:#56676e;--orange:#ce8039;--line:#d6dedd;--serif:'Bodoni Moda',Didot,Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--space:clamp(24px,4.9vw,80px);--section:clamp(44px,5vw,80px)}
 *{box-sizing:border-box}html{scroll-padding-top:24px}body{margin:0;color:var(--ink);background:var(--cream);font:16px/1.7 var(--sans)}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button,a,summary{touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--orange);outline-offset:5px}img{max-width:100%;display:block}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12}h2{font-size:clamp(32px,3vw,46px);letter-spacing:-1.2px}h3{font-size:27px}p{margin:16px 0;color:var(--muted)}.section{padding:var(--section) var(--space)}.eyebrow{display:flex;align-items:center;gap:14px;font:10px/1.5 var(--sans);font-weight:500;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink);margin:0 0 18px}.eyebrow i{width:32px;height:2px;background:var(--orange);flex:none}.textLink{display:inline-flex;align-items:center;gap:15px;font:10px/1.6 var(--sans);font-weight:500;text-transform:uppercase;letter-spacing:1.5px;margin-top:15px;padding:6px 0;border:0;border-bottom:1px solid transparent;background:transparent}.textLink span{font-size:23px;line-height:1;color:var(--orange)}.textLink:hover{border-color:var(--orange);color:#99561c}.button{display:inline-flex;align-items:center;justify-content:center;gap:15px;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:13px 23px;font-size:13px;line-height:1.5;border-radius:2px}.button:hover{background:#2f4a55}.credentials{font:12px/1.9 var(--sans);letter-spacing:.4px;color:var(--muted)}
 /* Navigation */
@@ -20,3 +59,14 @@
 
 /* Scroll depth: portrait drifts down while the quote travels up. */
 @media(prefers-reduced-motion:no-preference){.referencePortrait{transform:translate3d(0,var(--portrait-shift,0px),0)}.referenceHero blockquote{translate:0 var(--quote-shift,0px)}}
+
+/* One-time reveals and small interaction details, without a motion library. */
+@media(prefers-reduced-motion:no-preference){
+.referenceCare>div,.referenceCareItem,.referenceArticles>div,.referenceArticle,.pageBody>.split>*,.expertiseList>div,.articleTile,.videoCard,.resourceFaq,.footerIdentity,.footerNavigation{transition:opacity .55s ease var(--reveal-delay,0ms),translate .55s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms),transform .22s ease}
+.revealPending{opacity:0;translate:0 18px}
+.header nav a:before{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}.header nav a:hover:before{transform:scaleX(1)}
+.textLink span{transition:transform .2s ease}.textLink:hover span{transform:translateX(4px)}
+.articleThumbnail,.articleTile img{transition:filter .25s ease}.referenceArticle:hover .articleThumbnail,.articleTile:hover img{filter:brightness(1.04)}
+details[open] p{animation:enter .3s ease-out both}
+}
+.videoPreview{width:100%;aspect-ratio:16/9;border:0;background:#cbdfe4;color:var(--ink);display:flex;position:relative;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin-bottom:22px;overflow:hidden}.videoPreview>img{position:absolute;inset:0;height:100%;width:100%;object-fit:cover;margin:0}.videoPreview>span{position:relative;z-index:1;background:var(--cream);padding:4px 12px;font-size:12px;letter-spacing:1px}.videoPreview .videoPlay{display:grid;place-items:center;border-radius:50%;width:58px;height:58px;font-size:20px;padding:0;box-shadow:0 3px 15px #142b3615}.videoPreview:hover .videoPlay{background:var(--ink);color:#fff}
