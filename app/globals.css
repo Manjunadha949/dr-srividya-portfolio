@@ -101,3 +101,23 @@ details[open] p{animation:enter .3s ease-out both}
 .journalInvitation .textLink{margin-top:14px}
 @media(max-width:1150px) and (min-width:801px){.referenceCare{grid-template-columns:repeat(5,minmax(0,1fr));gap:25px}.referenceCare>div:first-child{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;column-gap:35px;padding:0 0 8px}.referenceCare>div:first-child .eyebrow{grid-column:1/-1}.referenceCare>div:first-child h2{grid-row:2/4;font-size:33px}.referenceCare>div:first-child>p{margin:0;max-width:360px}.referenceCare>div:first-child .textLink{justify-self:start;margin-top:10px}.referenceCareItem{padding-left:15px;gap:13px}.referenceCareItem h3{font-size:17px}.referenceCareItem p{font-size:14px}.journalEmpty>div:first-child h2{font-size:32px}.journalInvitation{padding:24px}.journalInvitation h3{font-size:27px}}
 @media(max-width:800px){.referenceCare{grid-template-columns:repeat(2,minmax(0,1fr));padding:35px 24px;gap:30px 22px}.referenceCare>div:first-child{padding:0}.referenceCare>div:first-child h2{font-size:34px}.referenceCare>div>p{font-size:17px;max-width:500px}.referenceCareItem{grid-template-rows:56px 48px auto;padding-left:16px;gap:12px}.referenceCareItem:before{top:68px}.referenceCareItem .icon{width:52px;height:52px}.referenceCareItem h3{font-size:19px;max-width:100%}.referenceCareItem p{font-size:16px;max-width:100%}.referenceArticles.journalEmpty{grid-template-columns:1fr;gap:26px;padding:35px 24px}.journalEmpty>div:first-child h2{font-size:34px}.journalInvitation{padding:24px}.journalInvitation h3{font-size:28px}.journalInvitation p{font-size:17px!important}}
+
+/* A deliberate phone layout, with a compact disclosure navigation. */
+.mobileNavBar{display:none}
+@media(max-width:800px){
+.header{padding:15px 22px;min-height:72px;display:block;position:relative;z-index:10;border-bottom:1px solid #bfd5dc80}
+.mobileNavBar{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mobileBrand{font:24px/1.1 var(--serif);letter-spacing:-.7px}.mobileBrand span{display:block;font:7px/1.6 var(--sans);letter-spacing:1.7px;margin-top:5px}
+.menuToggle{border:1px solid #a9c4ce;background:transparent;color:var(--ink);border-radius:3px;min-height:40px;padding:9px 12px;display:flex;gap:12px;align-items:center;font:11px/1.5 var(--sans);letter-spacing:.4px}
+.menuGlyph{display:grid;gap:5px;width:17px}.menuGlyph i{display:block;height:1px;width:17px;background:currentColor}.menuGlyph.isOpen i:first-child{transform:translateY(3px) rotate(45deg)}.menuGlyph.isOpen i:last-child{transform:translateY(-3px) rotate(-45deg)}
+.header .navigationLinks{display:none}.header .navigationLinks.menuOpen{position:absolute;display:flex;flex-direction:column;gap:0;top:100%;left:0;right:0;width:100%;padding:12px 22px 20px;background:#e4f0f4;border-bottom:1px solid #b9cfd7;box-shadow:0 15px 25px #142b3610;font:16px/1.5 Georgia,serif}
+.header .navigationLinks a{padding:12px 0;border-bottom:1px solid #c9dce1}.header .navigationLinks a:last-child{border:0}.header nav a:before,.header nav a[aria-current=page]:after{display:none}.header nav a[aria-current=page]{color:#9a541e}
+.heroStage>.referenceHero{justify-content:flex-start}.referenceCopy{padding:27px 22px 8px}.referenceCopy h1{font-size:clamp(56px,15.5vw,90px);line-height:.97;letter-spacing:-.06em}.referenceCopy h1 span{font-size:.49em;line-height:1.12;margin-top:5px}
+.motto{font-size:8px;letter-spacing:1.2px;gap:7px;margin:18px 0 20px;flex-wrap:nowrap;white-space:nowrap}.motto i{height:3px;width:25px;margin-right:4px}
+.referenceCopy>p{font-size:18px;line-height:1.5;max-width:540px}.heroLink{font-size:9px;letter-spacing:1.2px;margin-top:12px;padding-bottom:5px;gap:13px}.heroLink span{font-size:22px}
+.referencePortrait{height:clamp(290px,38svh,370px);width:100%;margin:8px 0 0;overflow:hidden;transform:none}.referencePortrait img{object-fit:contain;object-position:center bottom}
+.referenceHero blockquote{padding:16px 22px 24px;margin:0;font-size:18px;line-height:1.4;translate:none;background:#d9ebf2}.referenceHero blockquote br{display:block}.referenceHero blockquote i{margin:12px auto 0;width:28px}
+}
+@media(max-width:360px){.motto{font-size:7px;letter-spacing:.8px;gap:6px}.motto i{width:20px}.referenceCopy>p{font-size:17px}.referencePortrait{height:285px}}
+@media(min-width:521px) and (max-width:800px){.referenceCopy{padding:30px 32px 12px;max-width:660px;margin:auto;width:100%}.referencePortrait{height:400px}.referenceHero blockquote{font-size:20px}}
+@media(max-width:800px) and (prefers-reduced-motion:no-preference){.referencePortrait{transform:none}.referencePortrait img{transform:translate3d(0,var(--portrait-shift,0px),0)}.referenceHero blockquote{translate:none}.menuGlyph i{transition:transform .2s ease}}

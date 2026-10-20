@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 const links=[['/','Home'],['/about','About'],['/expertise','Areas of Care'],['/articles','Articles'],['/resources','Resources'],['/contact','Contact']];
-export function Navigation(){const pathname=usePathname();return <nav aria-label="Main navigation">{links.map(([href,label])=><a key={href} href={href} aria-current={pathname===href?'page':undefined}>{label}</a>)}</nav>}
+export function Navigation(){const pathname=usePathname();const [open,setOpen]=useState(false);return <><div className="mobileNavBar"><a className="mobileBrand" href="/">Dr. Srividya<span>PSYCHIATRIST</span></a><button className="menuToggle" type="button" aria-expanded={open} aria-controls="site-navigation" aria-label={open?'Close navigation':'Open navigation'} onClick={()=>setOpen(!open)} onKeyDown={e=>{if(e.key==='Escape')setOpen(false)}}><span>{open?'Close':'Menu'}</span><span className={'menuGlyph'+(open?' isOpen':'')} aria-hidden="true"><i/><i/></span></button></div><nav id="site-navigation" className={'navigationLinks'+(open?' menuOpen':'')} aria-label="Main navigation" onKeyDown={e=>{if(e.key==='Escape')setOpen(false)}}>{links.map(([href,label])=><a key={href} href={href} aria-current={pathname===href?'page':undefined} onClick={()=>setOpen(false)}>{label}</a>)}</nav></>}
