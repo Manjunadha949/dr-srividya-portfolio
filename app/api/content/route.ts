@@ -1,5 +1,4 @@
-import { getDb } from "@/db";
-import { content } from "@/db/schema";
+import { writeStoredContent } from "@/lib/storage";
 import { readContent } from "@/lib/content";
 import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { defaults } from "@/lib/defaults";
@@ -16,6 +15,8 @@ for(const key of ["photo","instagram"])if(!/^(https:\/\/|\/[^/])/.test(data[key]
 for(const a of data.articles)if(typeof a.title!=="string"||typeof a.body!=="string")throw Error("Invalid article");
 for(const a of data.faqs)if(typeof a.question!=="string"||typeof a.answer!=="string")throw Error("Invalid FAQ");
 for(const a of data.videos)if(typeof a.title!=="string"||typeof a.url!=="string"||!a.url.startsWith("https://"))throw Error("Invalid video");
+for(const item of [...data.articles,...data.videos]){if(item.image && (typeof item.image!=="string" || !/^(https:\/\/|\/[^/])/.test(item.image)))throw Error("Invalid image URL");} for(const a of data.articles)if(a.id && (typeof a.id!=="string"||!/^[a-zA-Z0-9-]+$/.test(a.id)))throw Error("Invalid article ID");
+for(const key of ["adult","child","education","experience"])data[key]=data[key].map((v:string)=>v.trim()).filter(Boolean);
 const encoded=JSON.stringify(data);if(encoded.length>200000)throw Error("Content too large");
-await getDb().insert(content).values({id:"profile",data:encoded}).onConflictDoUpdate({target:content.id,set:{data:encoded}});return Response.json({ok:true});
+await writeStoredContent(encoded);return Response.json({ok:true});
 }catch(e){return Response.json({error:e instanceof Error?e.message:"Invalid data"},{status:400});}}

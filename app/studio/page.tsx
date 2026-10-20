@@ -1,3 +1,4 @@
+export const metadata={title:"Owner Studio",robots:{index:false,follow:false}};
 import { requireChatGPTUser } from "../chatgpt-auth";
 import { readContent } from "@/lib/content";
 import Editor from "./editor";
