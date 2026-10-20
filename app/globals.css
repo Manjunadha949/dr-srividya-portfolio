@@ -18,5 +18,5 @@
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}a,button{transition:color .2s ease,background .2s ease,transform .2s ease}.referenceCopy,.pageHero h1{animation:enter .6s ease-out both}.referenceHero blockquote{animation:enter .7s .1s ease-out both}.icon{transition:transform .25s ease,background .25s ease}.referenceCareItem:hover .icon{transform:translateY(-3px);background:#e0e8e3}.referenceArticle:hover,.articleTile:hover{transform:translateY(-3px)}.button:hover{transform:translateY(-2px)}@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
-/* Gentle depth on desktop; scroll updates touch transforms only. */
-@media(min-width:801px) and (prefers-reduced-motion:no-preference){.referencePortrait{translate:0 var(--portrait-shift,0px)}.referenceHero blockquote{translate:0 var(--quote-shift,0px)}}
+/* Scroll depth: portrait drifts down while the quote travels up. */
+@media(prefers-reduced-motion:no-preference){.referencePortrait{transform:translate3d(0,var(--portrait-shift,0px),0)}.referenceHero blockquote{translate:0 var(--quote-shift,0px)}}
