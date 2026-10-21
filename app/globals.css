@@ -175,3 +175,5 @@ details[open] p{animation:enter .3s ease-out both}
 @media(max-width:1000px){.siteFooter.minimalFooter{gap:24px;padding:32px 24px}.minimalFooter .footerBrand{font-size:18px}.minimalFooter .footerSocials{padding-right:56px;gap:8px}}
 @media(max-width:700px){.siteFooter.minimalFooter{grid-template-columns:1fr;justify-items:center;gap:23px;padding:32px 24px 90px;text-align:center}.minimalFooter .footerBrand{justify-self:center}.minimalFooter .footerBrand span{max-width:100%;font-size:8px}.footerCopyright{text-align:center}.minimalFooter .footerSocials{justify-self:center;justify-content:center;padding-right:0;gap:12px}}
 @media(prefers-reduced-motion:reduce){.minimalFooter .footerSocials a{transition:none}.minimalFooter .footerSocials a:hover{transform:none}}
+
+.chatToggle{cursor:pointer;transition:background .2s,box-shadow .2s}.chatToggle svg{display:block;flex-shrink:0}.chatToggle:hover{background:#b76c32;box-shadow:0 5px 20px #142b3630}.chatToggle:focus-visible{outline:3px solid #416e82;outline-offset:4px}@media(prefers-reduced-motion:reduce){.chatToggle{transition:none}}
