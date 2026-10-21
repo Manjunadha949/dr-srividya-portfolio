@@ -75,6 +75,7 @@ export const siteTextDefaults:Record<string,string>={
   "detailNext": "TAKE THE NEXT STEP",
   "detailClinic": "Clinic & location →",
   "footerCopyright": "Dr. Srividya",
+  "footerRights": "All rights reserved.",
   "adultTitle": "Psychiatry",
   "childTitle": "Child & adolescent psychiatry",
   "adultEyebrow": "ADULT MENTAL HEALTH",
