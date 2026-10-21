@@ -1,0 +1,2 @@
+import type { Content } from './defaults';
+export function bookingUrl(d:Content){const phone=d.bookingPhone.replace(/[^0-9]/g,'');if(/^[1-9][0-9]{7,14}$/.test(phone))return 'https://wa.me/'+phone+'?text='+encodeURIComponent(d.bookingMessage);try{const u=new URL(d.whatsapp);if(u.protocol==='https:'&&['wa.me','api.whatsapp.com'].includes(u.hostname)){u.searchParams.set('text',d.bookingMessage);return u.href;}}catch{}return null;}
