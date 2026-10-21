@@ -190,3 +190,8 @@ details[open] p{animation:enter .3s ease-out both}
 .chairScene .heroStage>.referenceHero{flex:1 0 auto;min-height:0;width:100%}
 @media(min-width:801px){.chairScene .heroStage>.referenceHero{display:flex;align-items:center}.chairScene .referenceCopy{padding-top:32px;padding-bottom:40px}}
 @media(max-width:800px){.chairScene .heroStage>.referenceHero{flex:1 0 auto}.chairScene .referencePortrait{flex:1 0 300px}}
+
+/* Share one continuous background across the home navigation and hero. */
+.chairScene .heroStage{position:relative;background:var(--blue);isolation:isolate}
+.chairScene .heroStage>.header{background:transparent}
+@media(min-width:801px){.chairScene .heroStage>.referenceHero{position:static}.chairScene .heroStage .referencePortrait{position:absolute;inset:0;width:100%;height:100%;z-index:0}.chairScene .heroStage .referencePortrait img{object-position:65% 50%}.chairScene .heroStage .referenceCopy,.chairScene .heroStage blockquote{z-index:2}.chairScene .heroStage>.header{z-index:5}}
