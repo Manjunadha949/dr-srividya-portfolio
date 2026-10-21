@@ -26,7 +26,7 @@ export function VideoGallery({videos,heading='Health, in conversation',previousL
  const close=()=>setIndex(null);
  return <>
   <div className="videoGrid resourceCards" id={gridId}>{(expanded?videos:videos.slice(0,3)).map((video,i)=>{const {thumbnail}=videoMedia(video);return <article className="videoCard" key={video.url+'-'+i}>
-   <button className="videoPreview" type="button" aria-label={'Play '+video.title} onClick={()=>setIndex(i)}>{thumbnail&&<img src={thumbnail} alt="" loading="lazy" decoding="async" width="1280" height="720"/>}<span className="videoPlay" aria-hidden="true">▶</span><span>Play video</span></button>
+   <button className="videoPreview" type="button" aria-label={'Play '+video.title} onClick={()=>setIndex(i)}>{thumbnail&&<img src={thumbnail} alt="" loading="lazy" decoding="async" width="1280" height="720"/>}<span className="videoPlay" aria-hidden="true">▶</span></button>
    <h3><button className="videoTitleButton" type="button" onClick={()=>setIndex(i)}>{video.title}</button></h3>
    <button className="textLink videoOpenButton" type="button" onClick={()=>setIndex(i)}>Watch video ↗</button>
   </article>})}</div>
