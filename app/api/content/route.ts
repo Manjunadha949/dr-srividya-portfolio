@@ -7,12 +7,12 @@ import { defaults } from "@/lib/defaults";
 export async function GET(){ return Response.json(await readContent(),{headers:{"Cache-Control":"no-store"}}); }
 export async function PUT(req:Request){
 // Authorize edits independently of public site access.
-const user=await getChatGPTUser(); if(!user) return Response.json({error:"Sign in required"},{status:401}); if(!isAdmin(user.email)) return Response.json({error:"Owner access required"},{status:403});
+const user=await getChatGPTUser(); if(!user) return Response.json({error:"Sign in required"},{status:401}); if(!await isAdmin(user.email)) return Response.json({error:"Owner access required"},{status:403});
 if(req.headers.get("origin") !== new URL(req.url).origin) return Response.json({error:"Invalid origin"},{status:403});
 if(Number(req.headers.get("content-length")||0)>200000) return Response.json({error:"Content too large"},{status:413});
 try {const data:any=await req.json(); if(!data||typeof data!=="object")throw Error("Invalid content");
 for(const platform of socialPlatforms)if(data[platform.key]===undefined)data[platform.key]="";if(data.customLinks===undefined)data.customLinks=[];
-if(data.testimonials===undefined)data.testimonials=[];if(data.siteText===undefined)data.siteText={};if(data.expertiseDetails===undefined)data.expertiseDetails=[];for(const key of ["mapEmbedUrl","googleRating","googleReviewCount","bookingPhone","bookingMessage","locationUrl","clinicPhone","clinicAltPhone","clinicEmail","clinicWebsite","hospitalHours"])if(data[key]===undefined)data[key]=(defaults as any)[key];
+if(data.testimonials===undefined)data.testimonials=[];if(data.siteText===undefined)data.siteText={};if(data.expertiseDetails===undefined)data.expertiseDetails=[];for(const key of ["chatEnabled","chatGreeting","mapEmbedUrl","googleRating","googleReviewCount","bookingPhone","bookingMessage","locationUrl","clinicPhone","clinicAltPhone","clinicEmail","clinicWebsite","hospitalHours"])if(data[key]===undefined)data[key]=(defaults as any)[key];
 if(!data.siteText||typeof data.siteText!=="object"||Array.isArray(data.siteText)||Object.entries(data.siteText).some(([k,v])=>k.length>100||typeof v!=="string"||v.length>20000))throw Error("Invalid website text");
 for(const [key,value] of Object.entries(defaults)){if(key==="siteText")continue;if(Array.isArray(value)){if(!Array.isArray(data[key])||data[key].length>100)throw Error("Invalid "+key);}else if(typeof data[key]!=="string"||data[key].length>20000)throw Error("Invalid "+key);}
 for(const key of ["adult","child","education","experience"])if(data[key].some((v:unknown)=>typeof v!=="string"))throw Error("Invalid list");

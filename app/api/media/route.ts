@@ -3,7 +3,7 @@ import { env } from 'cloudflare:workers';
 import { getChatGPTUser } from '@/app/chatgpt-auth';
 export async function POST(req:Request){
  const user=await getChatGPTUser();
- if(!user||!isAdmin(user.email))return Response.json({error:'Owner access required'},{status:403});
+ if(!user||!await isAdmin(user.email))return Response.json({error:'Owner access required'},{status:403});
  if(req.headers.get('origin')!==new URL(req.url).origin)return Response.json({error:'Invalid origin'},{status:403});
  if(!env.BUCKET)return Response.json({error:'Image storage unavailable'},{status:503});
  if(Number(req.headers.get('content-length')||0)>5500000)return Response.json({error:'Choose an image under 5 MB'},{status:413});

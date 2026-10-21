@@ -1,0 +1,8 @@
+import {getChatGPTUser} from '@/app/chatgpt-auth';
+import {OWNER_EMAIL,adminEmails} from '@/lib/admin';
+import {tursoClient} from '@/lib/storage';
+async function owner(){const user=await getChatGPTUser();return user?.email.toLowerCase()===OWNER_EMAIL;}
+export async function GET(){if(!await owner())return Response.json({error:'Owner access required'},{status:403});return Response.json({emails:await adminEmails()},{headers:{'Cache-Control':'no-store'}})}
+async function change(req:Request,remove:boolean){if(!await owner())return Response.json({error:'Owner access required'},{status:403});if(req.headers.get('origin')!==new URL(req.url).origin)return Response.json({error:'Invalid origin'},{status:403});try{const body=await req.text();if(body.length>1000)throw Error();const {email}=JSON.parse(body);if(typeof email!=='string'||email.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return Response.json({error:'Enter her ChatGPT sign-in email.'},{status:400});const value=email.trim().toLowerCase();if(value===OWNER_EMAIL)return Response.json({error:'The owner account is always retained.'},{status:400});const client=tursoClient();if(!client)throw Error();try{await client.execute('CREATE TABLE IF NOT EXISTS site_admins (email TEXT PRIMARY KEY NOT NULL)');await client.execute({sql:remove?'DELETE FROM site_admins WHERE email=?':'INSERT INTO site_admins (email) VALUES (?) ON CONFLICT(email) DO NOTHING',args:[value]});}finally{client.close()}return Response.json({ok:true});}catch{return Response.json({error:'Could not update access. Please retry.'},{status:400})}}
+export const POST=(req:Request)=>change(req,false);
+export const DELETE=(req:Request)=>change(req,true);
