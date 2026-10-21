@@ -7,7 +7,9 @@ function videoMedia(video:Video){
  const valid=/^[A-Za-z0-9_-]{11}$/.test(id);
  return {embed:valid?'https://www.youtube-nocookie.com/embed/'+id:'',thumbnail:video.image||(valid?'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg':'')};
 }
-export function VideoGallery({videos,heading='Health, in conversation',previousLabel='← Previous',nextLabel='Next →'}:{videos:Video[];heading?:string;previousLabel?:string;nextLabel?:string}){
+export function VideoGallery({videos,heading='Health, in conversation',previousLabel='← Previous',nextLabel='Next →',showAllLabel='Show all videos',showLessLabel='Show fewer videos'}:{videos:Video[];heading?:string;previousLabel?:string;nextLabel?:string;showAllLabel?:string;showLessLabel?:string}){
+ const [expanded,setExpanded]=useState(false);
+ const gridId=useId();
  const [index,setIndex]=useState<number|null>(null);
  const dialog=useRef<HTMLDialogElement>(null);
  const titleId=useId();
@@ -23,11 +25,12 @@ export function VideoGallery({videos,heading='Health, in conversation',previousL
  const media=selected?videoMedia(selected):null;
  const close=()=>setIndex(null);
  return <>
-  <div className="videoGrid">{videos.map((video,i)=>{const {thumbnail}=videoMedia(video);return <article className="videoCard" key={video.url+'-'+i}>
+  <div className="videoGrid resourceCards" id={gridId}>{(expanded?videos:videos.slice(0,3)).map((video,i)=>{const {thumbnail}=videoMedia(video);return <article className="videoCard" key={video.url+'-'+i}>
    <button className="videoPreview" type="button" aria-label={'Play '+video.title} onClick={()=>setIndex(i)}>{thumbnail&&<img src={thumbnail} alt="" loading="lazy" decoding="async" width="1280" height="720"/>}<span className="videoPlay" aria-hidden="true">▶</span><span>Play video</span></button>
    <h3><button className="videoTitleButton" type="button" onClick={()=>setIndex(i)}>{video.title}</button></h3>
    <button className="textLink videoOpenButton" type="button" onClick={()=>setIndex(i)}>Watch video ↗</button>
   </article>})}</div>
+  <div className="resourceShowAll"><button type="button" className="button" aria-expanded={expanded} aria-controls={gridId} onClick={()=>setExpanded(value=>!value)}>{expanded?showLessLabel:showAllLabel}<span aria-hidden="true">{expanded?'−':'+'}</span></button>{expanded&&<small role="status">Showing all {videos.length} videos</small>}</div>
   <dialog ref={dialog} className="videoDialog" aria-labelledby={titleId} onCancel={close} onClose={close} onClick={event=>{if(event.target===event.currentTarget){const bounds=event.currentTarget.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)close();}}}>
    {selected&&<div className="videoDialogContent">
     <button className="videoDialogClose" type="button" onClick={close} aria-label="Close video" autoFocus>×</button>
