@@ -1,13 +1,12 @@
-import { isAdmin } from '@/lib/admin';
+import {studioIdentity} from '@/lib/studio-auth';
 import { writeStoredContent } from "@/lib/storage";
 import { readContent } from "@/lib/content";
-import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { socialPlatforms,safeSocialUrl } from "@/lib/social-links";
 import { defaults } from "@/lib/defaults";
 export async function GET(){ return Response.json(await readContent(),{headers:{"Cache-Control":"no-store"}}); }
 export async function PUT(req:Request){
 // Authorize edits independently of public site access.
-const user=await getChatGPTUser(); if(!user) return Response.json({error:"Sign in required"},{status:401}); if(!await isAdmin(user.email)) return Response.json({error:"Owner access required"},{status:403});
+if(!await studioIdentity())return Response.json({error:"Sign in required"},{status:401});
 if(req.headers.get("origin") !== new URL(req.url).origin) return Response.json({error:"Invalid origin"},{status:403});
 if(Number(req.headers.get("content-length")||0)>200000) return Response.json({error:"Content too large"},{status:413});
 try {const data:any=await req.json(); if(!data||typeof data!=="object")throw Error("Invalid content");
