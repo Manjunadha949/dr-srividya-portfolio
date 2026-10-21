@@ -1,6 +1,7 @@
 import { writeStoredContent } from "@/lib/storage";
 import { readContent } from "@/lib/content";
 import { getChatGPTUser } from "@/app/chatgpt-auth";
+import { socialPlatforms,safeSocialUrl } from "@/lib/social-links";
 import { defaults } from "@/lib/defaults";
 export async function GET(){ return Response.json(await readContent(),{headers:{"Cache-Control":"no-store"}}); }
 export async function PUT(req:Request){
@@ -9,9 +10,12 @@ const user=await getChatGPTUser(); if(!user) return Response.json({error:"Sign i
 if(req.headers.get("origin") !== new URL(req.url).origin) return Response.json({error:"Invalid origin"},{status:403});
 if(Number(req.headers.get("content-length")||0)>200000) return Response.json({error:"Content too large"},{status:413});
 try {const data:any=await req.json(); if(!data||typeof data!=="object")throw Error("Invalid content");
+for(const platform of socialPlatforms)if(data[platform.key]===undefined)data[platform.key]="";if(data.customLinks===undefined)data.customLinks=[];
 for(const [key,value] of Object.entries(defaults)){if(Array.isArray(value)){if(!Array.isArray(data[key])||data[key].length>100)throw Error("Invalid "+key);}else if(typeof data[key]!=="string"||data[key].length>20000)throw Error("Invalid "+key);}
 for(const key of ["adult","child","education","experience"])if(data[key].some((v:unknown)=>typeof v!=="string"))throw Error("Invalid list");
-for(const key of ["photo","instagram"])if(!/^(https:\/\/|\/[^/])/.test(data[key]))throw Error("Use HTTPS or a local image path");
+if(!/^(https:\/\/|\/[^/])/.test(data.photo))throw Error("Use HTTPS or a local image path");
+for(const platform of socialPlatforms){data[platform.key]=data[platform.key].trim();if(data[platform.key]&&!safeSocialUrl(data[platform.key]))throw Error("Enter a valid HTTPS link for "+platform.label);}
+if(data.customLinks.length>20)throw Error("Use at most 20 additional links");for(const link of data.customLinks){if(!link||typeof link.label!=="string"||!link.label.trim()||link.label.length>80||!safeSocialUrl(link.url))throw Error("Additional links need a label and valid HTTPS URL");link.label=link.label.trim();link.url=link.url.trim();}
 for(const a of data.articles)if(typeof a.title!=="string"||typeof a.body!=="string")throw Error("Invalid article");
 for(const a of data.faqs)if(typeof a.question!=="string"||typeof a.answer!=="string")throw Error("Invalid FAQ");
 for(const a of data.videos)if(typeof a.title!=="string"||typeof a.url!=="string"||!a.url.startsWith("https://"))throw Error("Invalid video");
