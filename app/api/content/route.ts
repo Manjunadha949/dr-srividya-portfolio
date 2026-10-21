@@ -12,7 +12,7 @@ if(req.headers.get("origin") !== new URL(req.url).origin) return Response.json({
 if(Number(req.headers.get("content-length")||0)>200000) return Response.json({error:"Content too large"},{status:413});
 try {const data:any=await req.json(); if(!data||typeof data!=="object")throw Error("Invalid content");
 for(const platform of socialPlatforms)if(data[platform.key]===undefined)data[platform.key]="";if(data.customLinks===undefined)data.customLinks=[];
-if(data.siteText===undefined)data.siteText={};if(data.expertiseDetails===undefined)data.expertiseDetails=[];for(const key of ["bookingPhone","bookingMessage","locationUrl"])if(data[key]===undefined)data[key]=(defaults as any)[key];
+if(data.testimonials===undefined)data.testimonials=[];if(data.siteText===undefined)data.siteText={};if(data.expertiseDetails===undefined)data.expertiseDetails=[];for(const key of ["bookingPhone","bookingMessage","locationUrl"])if(data[key]===undefined)data[key]=(defaults as any)[key];
 if(!data.siteText||typeof data.siteText!=="object"||Array.isArray(data.siteText)||Object.entries(data.siteText).some(([k,v])=>k.length>100||typeof v!=="string"||v.length>20000))throw Error("Invalid website text");
 for(const [key,value] of Object.entries(defaults)){if(key==="siteText")continue;if(Array.isArray(value)){if(!Array.isArray(data[key])||data[key].length>100)throw Error("Invalid "+key);}else if(typeof data[key]!=="string"||data[key].length>20000)throw Error("Invalid "+key);}
 for(const key of ["adult","child","education","experience"])if(data[key].some((v:unknown)=>typeof v!=="string"))throw Error("Invalid list");
@@ -22,6 +22,7 @@ if(data.customLinks.length>20)throw Error("Use at most 20 additional links");for
 for(const item of data.expertiseDetails){if(!item||["slug","overview","assessment","support","when"].some(k=>typeof item[k]!=="string"||item[k].length>20000)||!/^[a-z0-9-]+$/.test(item.slug))throw Error("Invalid expertise detail");}
 if(data.locationUrl&&!safeSocialUrl(data.locationUrl))throw Error("Enter a valid HTTPS location link");
 if(data.bookingPhone&&!/^[+0-9 ()-]{8,25}$/.test(data.bookingPhone))throw Error("Enter a WhatsApp number including country code");
+for(const t of data.testimonials)if(!t||["name","quote","source","url"].some(k=>typeof t[k]!=="string"||t[k].length>10000)||(t.url&&!safeSocialUrl(t.url)))throw Error("Invalid testimonial");
 for(const a of data.articles)if(typeof a.title!=="string"||typeof a.body!=="string")throw Error("Invalid article");
 for(const a of data.faqs)if(typeof a.question!=="string"||typeof a.answer!=="string")throw Error("Invalid FAQ");
 for(const a of data.videos)if(typeof a.title!=="string"||typeof a.url!=="string"||!a.url.startsWith("https://"))throw Error("Invalid video");

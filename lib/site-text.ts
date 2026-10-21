@@ -1,5 +1,5 @@
 export const siteTextDefaults:Record<string,string>={
-  "copy1": "Psychiatrist",
+  "testimonialsHeading":"Experiences shared with care.", "testimonialsEmpty":"Testimonials will be added here when available.", "copy1": "Psychiatrist",
   "copy2": "COMPASSION ",
   "copy3": " CLARITY ",
   "copy4": " LASTING CHANGE",
