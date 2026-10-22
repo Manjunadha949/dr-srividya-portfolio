@@ -1,4 +1,6 @@
 export const siteTextDefaults:Record<string,string>={
+  "careTitle5":"Addiction & Recovery",
+  "careText5":"Individualised support for substance use and recovery.",
   "notFoundLabel": "LET’S FIND YOUR WAY",
   "notFoundTitle": "This page has moved out of reach.",
   "notFoundDescription": "The link may be incorrect, or the page may have moved. You can return home or get in touch with us below.",

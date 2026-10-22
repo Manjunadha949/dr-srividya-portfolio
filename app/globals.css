@@ -381,22 +381,15 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
 
 .button.journalExploreButton{margin-top:20px;max-width:100%;text-decoration:none}.button.journalExploreButton:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 
-/* Tablet hero: keep copy, consultation and quote together beside the full portrait. */
-@media(min-width:601px) and (max-width:1100px){
- .chairScene .heroStage>.referenceHero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(6,auto);column-gap:20px;row-gap:0;align-content:center;align-items:start;min-height:calc(100svh - var(--header-height));height:auto;padding:36px 28px 42px}
- .chairScene .referenceCopy{display:contents}
- .chairScene .referenceCopy h1.shortDoctorName{grid-column:1;grid-row:1;margin:0;font-size:clamp(40px,5.7vw,62px);line-height:1.06;letter-spacing:-.045em;white-space:normal}
- .chairScene .referenceCopy h1.shortDoctorName>span{font-size:.48em;margin-top:10px}
- .chairScene .motto{grid-column:1;grid-row:2;margin:18px 0;gap:7px;flex-wrap:wrap;white-space:normal;font-size:8px;letter-spacing:.7px}
- .chairScene .referenceCopy>p{grid-column:1;grid-row:3;margin:0;max-width:36ch;font-size:18px;line-height:1.6}
- .chairScene .heroLink{grid-column:1;grid-row:4;justify-self:start;margin:20px 0 0;font-size:10px}
- .chairScene .heroBooking{grid-column:1;grid-row:5;margin:18px 0 0;justify-self:start;max-width:100%}
- .chairScene .heroBooking .bookingButton{width:auto;min-width:0;max-width:100%;min-height:48px;padding:13px 18px;font-size:14px;gap:12px}
- .chairScene .heroStage .referencePortrait{grid-column:2;grid-row:1/7;position:relative;inset:auto;width:100%;max-width:540px;height:auto;aspect-ratio:1;margin:0;align-self:center;justify-self:center;overflow:visible}
- .chairScene .heroStage .referencePortrait img{position:static;width:100%;height:100%;object-fit:contain;object-position:center;transform:none}
- .chairScene .referenceHero blockquote{grid-column:1;grid-row:6;position:static;inset:auto;max-width:30ch;margin:26px 0 0;padding:0;font-size:18px;line-height:1.5;text-align:left;translate:none}
- .chairScene .referenceHero blockquote i{margin:14px 0 0}
-}
-
 .journalSectionFooter{display:none}
 @media(max-width:1100px){.referenceArticles .journalExploreInline{display:none}.referenceArticles .journalSectionFooter{display:flex;grid-column:1/-1;justify-content:center;padding-top:8px}.journalSectionFooter .journalExploreButton{margin-top:0}}
+
+.referenceCareItem.compactCareExtra{display:none}
+@media(max-width:1100px){.referenceCareItem.compactCareExtra{display:block}}
+/* Compact journal preview; the full library remains on the Articles page. */
+@media(max-width:1100px){
+ .referenceArticles{grid-template-columns:minmax(0,1fr)}
+ .referenceArticles>.referenceArticle~.referenceArticle{display:none}
+ .referenceArticles>.referenceArticle{grid-column:1/-1;max-width:700px;width:100%;justify-self:center}
+ .referenceArticles>.referenceArticle .articleThumbnail{aspect-ratio:16/9}
+}
