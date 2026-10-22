@@ -1,3 +1,5 @@
+import {Booking} from './booking';
+import {Phone} from 'lucide-react';
 import {ChatLauncher} from './chat-launcher';
 import {bookingUrl} from '@/lib/booking';
 import { readContent } from '@/lib/content';
@@ -19,6 +21,7 @@ export async function Footer(){
       </div>
       <SocialLinks content={content}/>
     </footer>
+    <nav className="mobileActionBar" aria-label="Contact and consultation"><div className="mobileActionBarInner"><a className="mobileContactButton" href="/contact"><Phone size={18} strokeWidth={1.7} aria-hidden="true"/><span>{text.navContact??"Contact"}</span></a><Booking content={content}/></div></nav>
     {content.chatEnabled!=='false'&&<ChatLauncher greeting={content.chatGreeting} booking={bookingUrl(content)}/>}
   </>;
 }
