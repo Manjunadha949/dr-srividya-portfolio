@@ -534,3 +534,23 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .qualificationList h4{font-size:18px}
  .qualificationNumber,.practiceDate,.aboutTraining .eyebrow{font-size:14px}
 }
+
+/* A balanced floating action dock with matching button geometry. */
+@media(max-width:1100px){
+ .mobileActionBar{background:transparent;border:0;box-shadow:none;padding:10px 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none}
+ .mobileActionBarInner{pointer-events:auto;max-width:640px;padding:7px;gap:8px;border:1px solid var(--line);border-radius:22px;background:var(--color-surface);box-shadow:0 6px 24px var(--color-shadow-soft);grid-template-columns:minmax(88px,1fr) minmax(0,1.9fr)}
+ .mobileContactButton{border:0;border-radius:15px;min-height:48px;background:var(--blue);font-weight:500;gap:7px;padding:10px}
+ .mobileContactButton svg{width:18px;height:18px;flex:none}
+ .mobileActionBar .bookingButton{min-height:48px;border-radius:15px;padding:10px 12px;gap:10px;font-weight:600;font-size:13px}
+ .mobileActionBar .bookingButton>span:has(>.uiArrow){width:28px;height:28px}
+ .mobileActionBar .bookingButton .uiArrow{width:18px;height:18px}
+ .chatWidget{bottom:calc(100px + env(safe-area-inset-bottom))}
+}
+@media(max-width:360px){
+ .mobileActionBar{padding-left:8px;padding-right:8px}
+ .mobileActionBarInner{grid-template-columns:80px minmax(0,1fr);gap:6px;padding:6px}
+ .mobileContactButton{font-size:12px;gap:5px}
+ .mobileActionBar .bookingButton{font-size:12px;padding:10px 8px;gap:6px}
+ .mobileActionBar .bookingButton>span:has(>.uiArrow){width:24px;height:24px}
+}
+@media(hover:hover){.mobileContactButton:hover{background:var(--color-page)}.mobileActionBar .bookingButton:hover{background:var(--color-button-hover)}}
