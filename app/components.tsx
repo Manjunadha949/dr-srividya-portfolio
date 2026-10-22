@@ -16,6 +16,7 @@ export async function Footer(){
       <div className="footerCopyright">
         <small>© {new Date().getFullYear()} {text.footerCopyright}</small>
         <small>{text.footerRights??"All rights reserved."}</small>
+        <small className="footerCredit">{text.footerCredit??"Designed & developed by Credo Forge"}</small>
       </div>
       <SocialLinks content={content}/>
     </footer>

@@ -14,7 +14,7 @@ add('Resources','Videos',['copy32','copy33','copy34','copy35','showAllVideos','s
 add('Resources','Testimonials',['testimonialsHeading','testimonialsEmpty','showAllTestimonials','showFewerTestimonials'],['Section heading','Empty state message','Show all button','Show fewer button']);
 add('Resources','FAQs',['copy36'],['Questions section label']);
 add('Contact','Clinic information',['copy37','copy38','copy39','copy40','copy41'],['Section label','Missing contact details message','Directions link','Instagram link','Questions section label']);
-add('Shared','Footer',['copy44','copy45','footerCopyright','footerRights'],['Doctor name','Professional description','Copyright name','Copyright statement']);
+add('Shared','Footer',['copy44','copy45','footerCopyright','footerRights','footerCredit'],['Doctor name','Professional description','Copyright name','Copyright statement','Website design credit']);
 add('Shared','Booking',['bookingLabel'],['Consultation button · used across the website']);
 add('Areas of care','Care lists',['adultTitle','childTitle','adultEyebrow','childEyebrow'],['Adult care heading','Child care heading','Adult section label','Child section label']);
 add('Areas of care','Condition detail pages',['detailRelatedHeading','detailBack','detailNext','detailClinic','assessmentHeading','supportHeading','whenHeading','educationNotice','consultationHeading','consultationDescription'],['Related areas heading','Back link','Consultation label','Clinic link','Assessment heading','Support heading','When to seek help heading','Information notice','Consultation heading','Consultation description']);

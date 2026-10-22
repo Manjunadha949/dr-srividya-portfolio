@@ -90,6 +90,7 @@ export const siteTextDefaults:Record<string,string>={
   "videoPrevious": "← Previous",
   "videoNext": "Next →",
   "footerRights": "All rights reserved.",
+  "footerCredit": "Designed & developed by Credo Forge",
   "adultTitle": "Psychiatry",
   "childTitle": "Child & adolescent psychiatry",
   "adultEyebrow": "ADULT MENTAL HEALTH",

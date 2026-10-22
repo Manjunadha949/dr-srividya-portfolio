@@ -41,10 +41,10 @@
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
   --color-brand: #c6e7fa;
-  --color-page: var(--color-brand);
+  --color-page: #faf9f5;
   --color-surface: #ffffff;
-  --color-surface-soft: #edf3f6;
-  --color-surface-hover: #e1ecf1;
+  --color-surface-soft: var(--color-brand);
+  --color-surface-hover: var(--color-brand);
   --color-text: #142b36;
   --color-muted: #56676e;
   --color-accent: #ce8039;
@@ -56,7 +56,7 @@
   --color-mask: #000000;
   --color-overlay: rgba(20,43,54,.76);
   --color-glass: rgba(255,255,255,.3);
-  --color-brand-glass: rgba(198,231,250,.85);
+  --color-brand-glass: var(--color-brand);
   --color-shadow-subtle: rgba(20,43,54,.08);
   --color-shadow-soft: rgba(20,43,54,.13);
   --color-shadow: rgba(20,43,54,.2);
@@ -334,3 +334,16 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
 /* Keep the motto above the portrait surface so every letter remains visible. */
 .chairScene .motto{position:relative;z-index:2;overflow:visible;line-height:1.8}
 @media(max-width:800px){.chairScene .motto{min-height:20px;margin-bottom:18px;align-self:start}.chairScene .referencePortrait{margin-top:0}}
+
+/* Show the complete portrait scene below the fixed navigation. */
+.chairScene .heroStage .referencePortrait img{object-fit:contain;object-position:center bottom;transform:none;width:100%;height:100%;max-width:100%}
+@media(min-width:801px){
+ .chairScene .referenceCopy{width:44%}
+ .chairScene .heroStage .referencePortrait{inset:24px var(--space) 24px 46%;width:auto;height:auto;overflow:visible;margin:0;transform:none}
+ .chairScene .referenceHero blockquote{top:24px;right:var(--space);max-width:160px;font-size:17px}
+}
+@media(max-width:800px){
+ .chairScene .heroStage .referencePortrait{height:auto;aspect-ratio:978/809;width:calc(100% - 44px);max-width:500px;justify-self:center;margin:0 22px 16px;overflow:visible}
+ .chairScene .heroStage .referencePortrait img{position:static;object-fit:contain;transform:none}
+}
+.footerCopyright .footerCredit{margin-top:8px;font-size:11px;color:var(--muted)}
