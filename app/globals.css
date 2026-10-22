@@ -581,3 +581,8 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 
 /* Keep the compact booking action text-only. */
 .mobileActionBar .bookingButton>span:has(>.uiArrow){display:none}
+
+/* Compact screens already have a persistent consultation action. */
+@media(max-width:1100px){
+ .referenceHome .heroBooking{display:none}
+}
