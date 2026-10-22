@@ -578,3 +578,6 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 @media(max-width:800px){
  .header .navigationLinks.menuOpen a:after,.header .navigationLinks.menuOpen a[aria-current=page]:after{content:none;display:none}
 }
+
+/* Keep the compact booking action text-only. */
+.mobileActionBar .bookingButton>span:has(>.uiArrow){display:none}
