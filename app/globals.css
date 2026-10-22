@@ -40,8 +40,8 @@
 }
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
-  --color-brand: #dcecf2;
-  --color-page: #faf9f5;
+  --color-brand: #c7e8fa;
+  --color-page: var(--color-brand);
   --color-surface: #ffffff;
   --color-surface-soft: #edf3f6;
   --color-surface-hover: #e1ecf1;
@@ -56,7 +56,7 @@
   --color-mask: #000000;
   --color-overlay: rgba(20,43,54,.76);
   --color-glass: rgba(255,255,255,.3);
-  --color-brand-glass: rgba(220,236,242,.85);
+  --color-brand-glass: rgba(199,232,250,.85);
   --color-shadow-subtle: rgba(20,43,54,.08);
   --color-shadow-soft: rgba(20,43,54,.13);
   --color-shadow: rgba(20,43,54,.2);
