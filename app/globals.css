@@ -1,43 +1,5 @@
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/bodoni-moda-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Bodoni Moda';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/fonts/bodoni-moda-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/dm-sans-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/fonts/dm-sans-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/fonts/dm-sans-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+@font-face{font-family:'Lora';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/lora-500.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/inter-400.woff2') format('woff2')}
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
   --color-brand: #d3e8f2;
@@ -67,9 +29,9 @@
   --muted: var(--color-muted);
   --orange: var(--color-accent);
   --line: var(--color-border);
-  --serif: 'Bodoni Moda',Didot,Georgia,serif;
-  --body-serif: Georgia,serif;
-  --sans: 'DM Sans',Arial,sans-serif;
+  --serif: 'Lora',Georgia,serif;
+  --body-serif: var(--sans);
+  --sans: 'Inter',Arial,sans-serif;
   --header-height: 78px;
   --space: clamp(24px,4.9vw,80px);
   --section: clamp(44px,5vw,80px);
@@ -513,4 +475,62 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
  .mobileActionBar{padding-left:12px;padding-right:12px}
  .mobileActionBarInner{grid-template-columns:86px minmax(0,1fr);gap:8px}
  .mobileActionBar .bookingButton{padding:10px;font-size:12px;gap:6px}
+}
+
+/* Professional background: numbered qualifications and a calm practice timeline. */
+.aboutTraining{margin-top:64px}
+.trainingHeading{padding:36px 40px;border-radius:24px;background:var(--blue);margin-bottom:36px}
+.trainingHeading h2{font:400 clamp(32px,4.5vw,54px)/1.12 var(--serif);letter-spacing:-1.5px;max-width:680px;margin:12px 0 16px;text-wrap:balance}
+.trainingHeading>p:last-child{font:17px/1.6 var(--sans);color:var(--muted);margin:0}
+.trainingColumns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.qualificationPanel{padding:20px 0}
+.trainingColumns h3{font:400 clamp(30px,3.5vw,42px)/1.15 var(--serif);letter-spacing:-1px;margin:14px 0 30px}
+.qualificationList,.practiceTimeline{list-style:none;padding:0;margin:0}
+.qualificationList li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.qualificationList li:first-child{padding-top:0}.qualificationList li:last-child{border-bottom:0}
+.qualificationNumber{font:500 14px/1.6 var(--sans);color:var(--color-accent-hover);padding-top:2px}
+.qualificationList h4{font:600 17px/1.4 var(--sans);margin:0;overflow-wrap:anywhere}
+.qualificationList p{font:16px/1.65 var(--sans);color:var(--muted);margin:6px 0 0}
+.practicePanel{padding:32px;border-radius:24px;background:var(--blue)}
+.practiceTimeline li{position:relative;margin-left:8px;padding:0 0 28px 26px;border-left:1px solid var(--line)}
+.practiceTimeline li:before{content:'';position:absolute;top:5px;left:-5px;width:9px;height:9px;background:var(--orange);border-radius:50%}
+.practiceTimeline li:last-child{padding-bottom:0;border-left-color:transparent}
+.practiceDate{font:500 11px/1.5 var(--sans);letter-spacing:1.5px;text-transform:uppercase;margin:0 0 7px}
+.practiceDescription{font:16px/1.7 var(--sans);margin:0;overflow-wrap:anywhere}
+@media(max-width:900px){
+ .trainingColumns{grid-template-columns:minmax(0,1fr);gap:24px}
+ .aboutTraining{margin-top:42px}
+ .trainingHeading{padding:30px 26px;margin-bottom:24px}
+ .qualificationPanel{padding:8px 4px}
+ .practicePanel{padding:30px 26px}
+}
+@media(max-width:600px){
+ .trainingHeading{padding:28px 22px;border-radius:20px}
+ .trainingHeading h2{font-size:36px;letter-spacing:-1px}
+ .trainingColumns h3{font-size:32px;margin-bottom:24px}
+ .qualificationList li{grid-template-columns:28px minmax(0,1fr);gap:14px;padding:20px 0}
+ .qualificationList h4{font-size:16px}.qualificationList p,.practiceDescription{font-size:15px}
+ .practicePanel{padding:26px 22px;border-radius:20px}
+}
+
+/* Lora is reserved for headings; Inter keeps descriptions and controls readable. */
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.025em}
+p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans);line-height:1.6}
+.pageHero h1,.articleHero h1,.trainingHeading h2,.trainingColumns h3{font-family:var(--serif);font-weight:500;letter-spacing:-.025em}
+.chairScene .referenceCopy h1.shortDoctorName{font-family:var(--serif);font-weight:500;font-size:clamp(52px,6.3vw,96px);letter-spacing:-.035em}
+.chairScene .referenceCopy h1.shortDoctorName>span{font-family:var(--serif);font-weight:500}
+.referenceCareItem h3,.referenceArticle h3,.articleTile h2{font-family:var(--serif);font-weight:500}
+.chairScene .referenceHero blockquote{font-family:var(--sans);font-style:normal;font-weight:500;line-height:1.6}
+.qualificationList h4{font:600 18px/1.4 var(--sans)}
+.qualificationList p,.practiceDescription{font:400 17px/1.6 var(--sans)}
+.qualificationNumber,.practiceDate,.aboutTraining .eyebrow{font:500 14px/1.6 var(--sans);letter-spacing:1px}
+@media(max-width:600px){
+ .pageHero h1,.articleHero h1,.chairScene .referenceCopy h1.shortDoctorName{font-size:36px;line-height:1.2;letter-spacing:-.025em}
+ .chairScene .referenceCopy h1.shortDoctorName>span{font-size:22px;line-height:1.3}
+ .referenceHome h2,.pageBody h2,.trainingHeading h2,.trainingColumns h3{font-size:28px;line-height:1.25;letter-spacing:-.025em}
+ .referenceCare .referenceCareItem h3,.referenceArticle h3,.videoCard h3{font-size:20px;line-height:1.35}
+ .articleTile h2{font-size:24px;line-height:1.3}
+ .referenceCopy>p,.chairScene .referenceCopy>p,.referenceCareItem p,.referenceArticle p,.articleTile p,.aboutIntro p:last-child,.qualificationList p,.practiceDescription,.articleText,.pageLead{font-size:16px;line-height:1.6}
+ .qualificationList h4{font-size:18px}
+ .qualificationNumber,.practiceDate,.aboutTraining .eyebrow{font-size:14px}
 }

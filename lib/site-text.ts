@@ -1,4 +1,9 @@
 export const siteTextDefaults:Record<string,string>={
+ "aboutTrainingLabel":"TRAINING & PRACTICE",
+ "aboutTrainingTitle":"Care, grounded in experience.",
+ "aboutTrainingLead":"Education and clinical experience",
+ "aboutQualificationsTitle":"Qualifications",
+ "aboutPracticeTitle":"Clinical practice",
   "careTitle5":"Addiction & Recovery",
   "careText5":"Individualised support for substance use and recovery.",
   "notFoundLabel": "LET’S FIND YOUR WAY",
