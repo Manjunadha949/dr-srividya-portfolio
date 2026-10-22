@@ -347,3 +347,26 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
  .chairScene .heroStage .referencePortrait img{position:static;object-fit:contain;transform:none}
 }
 .footerCopyright .footerCredit{margin-top:8px;font-size:11px;color:var(--muted)}
+
+/* Complete seated portrait includes feet and furniture inside its frame. */
+@media(max-width:800px){.chairScene .heroStage .referencePortrait{aspect-ratio:1;max-width:500px}}
+/* Curved joins keep distinct blue and cream sections without a gradient. */
+.referenceHome{background:var(--blue)}
+.referenceCare{position:relative;border-radius:clamp(24px,4vw,56px) clamp(24px,4vw,56px) 0 0;padding-bottom:84px}
+.referenceArticles{position:relative;margin-top:-32px;border-radius:clamp(24px,4vw,56px) clamp(24px,4vw,56px) 0 0;padding-top:52px}
+.footerCopyright{gap:6px;text-align:center}
+.footerCopyright .footerCredit{font:500 10px/1.7 var(--sans);letter-spacing:.8px;margin-top:0;color:var(--ink)}
+/* Admin navigation and content scroll independently. */
+.studio{height:100svh;min-height:0;overflow:hidden}
+.studio>aside{height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.studio>main{max-width:none;height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding-top:20px;padding-bottom:48px}
+.studio .studioTop{top:0;position:sticky}
+@media(max-width:800px){.studio{display:flex;flex-direction:column}.studio>aside{flex:0 0 auto;height:auto;max-height:32svh;padding:16px 20px}.studio nav{margin:16px 0 8px}.studio>main{flex:1;height:auto;padding:20px}.studio .studioTop{padding-top:12px;padding-bottom:16px}.studio .studioTop h1{font-size:32px}}
+/* Article headlines use a comfortable reading scale. */
+.articleHero{padding-top:36px;padding-bottom:40px}
+.articleHero h1{font-size:clamp(32px,3.2vw,52px);line-height:1.16;letter-spacing:-1.2px;max-width:900px;text-wrap:balance}
+@media(max-width:600px){.referenceCare{padding-bottom:67px}.referenceArticles{padding-top:38px}.articleHero h1{font-size:34px}.articleCover{max-height:340px}}
+
+/* Each phrase retains its own line and readable spacing on every screen. */
+.referenceHero blockquote>span{display:block;line-height:1.5}
+@media(max-width:800px){.chairScene .referenceHero blockquote{font-size:18px;padding-top:20px;padding-bottom:28px}.referenceHero blockquote>span+span{margin-top:2px}}

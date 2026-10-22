@@ -81,7 +81,7 @@ export const siteTextDefaults:Record<string,string>={
   "detailBack": "← All areas of care",
   "detailNext": "TAKE THE NEXT STEP",
   "detailClinic": "Clinic & location →",
-  "footerCopyright": "Dr. Srividya",
+  "footerCopyright": "Credo Forge",
   "showAllVideos": "Show all videos",
   "showFewerVideos": "Show fewer videos",
   "showAllTestimonials": "Show all testimonials",

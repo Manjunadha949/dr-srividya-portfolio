@@ -4,6 +4,14 @@ import { readExecutionProfile } from "./execution-profile.mjs";
 
 const [command, ...args] = process.argv.slice(2);
 if (!["dev", "build"].includes(command)) throw new Error("Expected dev or build.");
+// Vercel needs Next.js .next manifests; Sites retains its Vinext Worker build.
+if (process.env.VERCEL === "1" || process.env.SRIVIDYA_BUILD_TARGET === "next") {
+  const cli = fileURLToPath(new URL("../node_modules/next/dist/bin/next", import.meta.url));
+  const result = spawnSync(process.execPath, [cli, command, ...(command === "build" ? ["--webpack"] : []), ...args], {stdio:"inherit", env:process.env});
+  if (result.error) throw result.error;
+  process.exit(result.status ?? 1);
+}
+
 const managedLinux = readExecutionProfile() === "managed-linux";
 
 if (managedLinux && command === "build") {

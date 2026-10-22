@@ -1,4 +1,4 @@
-import { env } from 'cloudflare:workers';
+import { env } from '@/lib/runtime-env';
 import { createClient } from '@libsql/client/web';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@/db';

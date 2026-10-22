@@ -1,4 +1,4 @@
-import {env} from 'cloudflare:workers';
+import {env} from '@/lib/runtime-env';
 import {readContent} from '@/lib/content';
 import {tursoClient} from '@/lib/storage';
 export async function POST(req:Request){
@@ -11,7 +11,7 @@ export async function POST(req:Request){
  const d=await readContent();if(d.chatEnabled==='false')return Response.json({error:'The assistant is currently switched off.'},{status:503});
  const client=tursoClient();if(!client)return Response.json({error:'The assistant is temporarily unavailable.'},{status:503});
  try{
- const ip=req.headers.get('cf-connecting-ip')||'unknown';const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ip)))).map(b=>b.toString(16).padStart(2,'0')).join('');const hour=Math.floor(Date.now()/3600000);const day=Math.floor(Date.now()/86400000);
+ const ip=req.headers.get('cf-connecting-ip')||req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()||'unknown';const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ip)))).map(b=>b.toString(16).padStart(2,'0')).join('');const hour=Math.floor(Date.now()/3600000);const day=Math.floor(Date.now()/86400000);
  const result=await client.batch([
  'CREATE TABLE IF NOT EXISTS chat_limits (key TEXT PRIMARY KEY,count INTEGER NOT NULL,expires INTEGER NOT NULL)',
  {sql:'DELETE FROM chat_limits WHERE expires < ?',args:[Date.now()]},

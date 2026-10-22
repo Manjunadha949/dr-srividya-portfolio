@@ -1,4 +1,4 @@
-import { env } from 'cloudflare:workers';
+import { env } from '@/lib/runtime-env';
 import { tursoClient } from './storage';
 export const OWNER_EMAIL='2110030107cse@gmail.com';
 export async function adminEmails(){const client=tursoClient();if(!client)return [];try{await client.execute('CREATE TABLE IF NOT EXISTS site_admins (email TEXT PRIMARY KEY NOT NULL)');const r=await client.execute('SELECT email FROM site_admins ORDER BY email');return r.rows.map(row=>String(row.email));}finally{client.close()}}
