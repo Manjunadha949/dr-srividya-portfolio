@@ -17,3 +17,8 @@ Keep secrets server-only. Do not prefix database credentials or API keys with `N
 On Vercel, `/studio/login` uses the existing studio account. ChatGPT hosting identity headers are disabled outside Sites. Uploads use the existing R2 binding on Sites and chunked Turso BLOB storage on Vercel. Both hosts can read Turso uploads; earlier public R2 images retain a legacy URL fallback. Upload limit: 3 MB per image.
 
 A local compatibility build can run with `SRIVIDYA_BUILD_TARGET=next npm run build`, after configuring the required environment variables privately. The ordinary build remains the Sites Worker build outside Vercel.
+
+
+## Missing Turso variables during prerendering
+
+`build:vercel` sets a private flag only for its child build process. If Turso variables are absent during prerendering, static error pages and sitemap generation use bundled public text rather than trying Cloudflare D1. This does not configure a database and does not permit admin writes. At runtime, Vercel requires both `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`; add them to the target environment and redeploy. Partial configuration is also rejected at runtime. A Cloudflare D1 fallback is used only when a real D1 binding exists on Sites.

@@ -3,6 +3,7 @@ import {tursoClient} from '@/lib/storage';
 import {authRateLimit,sameOrigin,verifyPassword,randomToken,digest,SESSION_COOKIE,SESSION_SECONDS,cookieOptions} from '@/lib/studio-auth';
 export async function POST(req:Request){
  if(!sameOrigin(req))return Response.json({error:'Invalid origin'},{status:403});
+ try{const database=tursoClient();if(!database)return Response.json({error:'Admin login is unavailable. Configure TURSO_DATABASE_URL and TURSO_AUTH_TOKEN in the hosting environment.'},{status:503});database.close();}catch{return Response.json({error:'The database connection is not configured correctly. Check both Turso environment variables.'},{status:503});}
  try{
   if(!await authRateLimit(req))return Response.json({error:'Too many attempts. Please try again in 15 minutes.'},{status:429});
   const raw=await req.text();if(raw.length>2000)throw Error();const {username,password}=JSON.parse(raw);
