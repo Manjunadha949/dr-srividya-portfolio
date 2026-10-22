@@ -586,3 +586,9 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 @media(max-width:1100px){
  .referenceHome .heroBooking{display:none}
 }
+
+/* Hide the duplicate current-page label on phones and tablets. */
+@media(max-width:1100px){
+ .header .mobileHome{display:none}
+ .header .mobileNavBar{justify-content:flex-end}
+}
