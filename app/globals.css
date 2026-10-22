@@ -418,7 +418,7 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
 }
 
 /* Stacked hero copy follows one edge, including the consultation and closing quote. */
-@media(max-width:800px){
+@media(max-width:600px){
  .chairScene .heroStage>.referenceHero{padding-bottom:30px}
  .chairScene .referenceCopy>p{max-width:600px;margin-left:22px;margin-right:22px;font-size:clamp(17px,2.3vw,19px);line-height:1.6}
  .chairScene .heroLink{margin:20px 22px 0;justify-self:start}
