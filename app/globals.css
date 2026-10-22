@@ -40,7 +40,7 @@
 }
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
-  --color-brand: #c6e7fa;
+  --color-brand: #d3e8f2;
   --color-page: #faf9f5;
   --color-surface: #ffffff;
   --color-surface-soft: var(--color-brand);
