@@ -300,3 +300,12 @@ details[open] p{animation:enter .3s ease-out both}
 .chairScene .heroStage,.chairScene .heroStage>.header,.chairScene .referenceHero,.chairScene .referencePortrait{background:var(--blue)}
 .chairScene .heroStage>.header{border-bottom:0}
 .chairScene .heroStage .referencePortrait img{mask-image:none;-webkit-mask-image:none;filter:none}
+
+/* Missing URLs use the same shared theme and navigation as public pages. */
+.notFoundPage{min-height:100svh;display:flex;flex-direction:column;background:var(--blue)}
+.notFoundMain{flex:1;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,7vw,100px);align-items:center;width:100%;max-width:1400px;min-height:65svh;margin:0 auto}
+.notFoundNumber{position:relative;justify-self:center;font:clamp(110px,17vw,220px)/1 var(--serif);letter-spacing:-.07em;color:var(--ink);padding:20px 0 35px}
+.notFoundNumber span{display:block;width:64px;height:3px;margin:22px auto 0;background:var(--orange)}
+.notFoundCopy{max-width:650px}.notFoundCopy h1{font-size:clamp(35px,4vw,58px);line-height:1.12;letter-spacing:-1.5px;text-wrap:balance}.notFoundCopy>p{font:18px/1.7 var(--body-serif);max-width:540px;margin:22px 0 28px}
+.notFoundActions{display:flex;gap:14px;flex-wrap:wrap}.notFoundCopy>.textLink{margin-top:24px}
+@media(max-width:700px){.notFoundMain{grid-template-columns:1fr;gap:16px;padding-top:32px;padding-bottom:46px;min-height:65svh}.notFoundNumber{justify-self:start;font-size:100px;padding:0 0 12px}.notFoundNumber span{margin:12px 0 0;width:42px}.notFoundCopy h1{font-size:38px}.notFoundCopy>p{font-size:17px;margin:18px 0 24px}.notFoundActions{flex-direction:column;align-items:stretch}.notFoundActions .button{width:100%}}

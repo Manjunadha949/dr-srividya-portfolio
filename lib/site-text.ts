@@ -1,4 +1,11 @@
 export const siteTextDefaults:Record<string,string>={
+  "notFoundLabel": "LET’S FIND YOUR WAY",
+  "notFoundTitle": "This page has moved out of reach.",
+  "notFoundDescription": "The link may be incorrect, or the page may have moved. You can return home or get in touch with us below.",
+  "notFoundHome": "Back to home",
+  "notFoundContact": "Contact the clinic",
+  "notFoundResources": "Explore resources",
+
   "testimonialsHeading":"Experiences shared with care.", "testimonialsEmpty":"Testimonials will be added here when available.", "copy1": "Psychiatrist",
   "copy2": "COMPASSION ",
   "copy3": " CLARITY ",
