@@ -251,15 +251,15 @@ details[open] p{animation:enter .3s ease-out both}
 .articleTile p,.expertiseArticle p,.aboutIntro p:last-child{font-family:var(--body-serif);font-size:var(--font-copy);line-height:1.75}
 .siteFooter.minimalFooter{background:var(--color-surface)}
 
-/* Mobile home: compact title, portrait, then introduction and actions. */
+/* Mobile home: full-width portrait blends into the shared blue scene. */
 @media(max-width:800px){
   .chairScene .heroStage>.referenceHero{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;justify-content:stretch;row-gap:0;padding:24px 0 0}
   .chairScene .referenceCopy{display:contents}
   .chairScene .referenceCopy h1.shortDoctorName{grid-row:1;margin:0 22px;font-size:clamp(44px,10.8vw,66px);line-height:1;letter-spacing:-.055em;white-space:normal}
   .chairScene .referenceCopy h1.shortDoctorName>span{font-size:.49em;margin-top:8px}
   .chairScene .motto{grid-row:2;justify-content:flex-start;margin:18px 22px 22px;gap:7px;white-space:normal;flex-wrap:wrap;font-size:8px;letter-spacing:1px}
-  .chairScene .referencePortrait{grid-row:3;position:relative;inset:auto;width:calc(100% - 44px);height:clamp(240px,65vw,360px);margin:0 22px 22px;border-radius:var(--radius-card);overflow:hidden;flex:none;transform:none}
-  .chairScene .referencePortrait img{object-fit:cover;object-position:78% center;transform:none;mask-image:none}
+  .chairScene .referencePortrait{grid-row:3;position:relative;inset:auto;width:100%;height:clamp(280px,76vw,400px);margin:0 0 12px;border:0;border-radius:0;background:var(--blue);overflow:hidden;flex:none;transform:none}
+  .chairScene .referencePortrait img{object-fit:cover;object-position:78% center;transform:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,var(--color-mask) 10%,var(--color-mask) 84%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,var(--color-mask) 10%,var(--color-mask) 84%,transparent 100%)}
   .chairScene .referenceCopy>p{grid-row:4;margin:0 22px;max-width:none;font-size:18px;line-height:1.55}
   .chairScene .heroLink{grid-row:5;justify-self:start;margin:15px 22px 0;font-size:10px}
   .chairScene .heroBooking{grid-row:6;margin:14px 22px 0}
