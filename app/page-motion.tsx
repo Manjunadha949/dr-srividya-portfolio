@@ -6,8 +6,9 @@ export function PageMotion(){
  useEffect(()=>{
   if(pathname.startsWith('/studio')||pathname.startsWith('/admin'))return;
   const preference=window.matchMedia('(prefers-reduced-motion: no-preference)');
-  const revealItems=Array.from(document.querySelectorAll<HTMLElement>('.referenceCare>div,.referenceCareItem,.referenceArticles>div,.referenceArticle,.pageBody>.split>*,.expertiseList>a,.articleTile,.videoCard,.resourceFaq'));
-  const layers=Array.from(document.querySelectorAll<HTMLElement>('.referencePortrait,.referenceCare>div:first-child,.referenceCareItem,.referenceArticles>div:first-child,.referenceArticle,.pageHero>.eyebrow,.pageHero>.pageLead,.aboutPhoto,.expertiseList>a,.articleTile,.videoCard,.testimonialCard,.articleCover,.contactColumns>div'));
+  const revealSelector='.referenceCare>div,.referenceCareItem,.referenceArticles>div,.referenceArticle,.pageBody>.split>*,.expertiseList>a,.articleTile,.videoCard,.resourceFaq';
+  const layerSelector='.referencePortrait,.referenceCare>div:first-child,.referenceCareItem,.referenceArticles>div:first-child,.referenceArticle,.pageHero>.eyebrow,.pageHero>.pageLead,.aboutPhoto,.expertiseList>a,.articleTile,.videoCard,.testimonialCard,.articleCover,.contactColumns>div';
+  let revealItems:HTMLElement[]=[];let layers:HTMLElement[]=[];let refreshFrame=0;
   let revealObserver:IntersectionObserver|undefined;let depthObserver:IntersectionObserver|undefined;let resizeObserver:ResizeObserver|undefined;let frame=0;let measure=true;let disposed=false;
   const active=new Set<HTMLElement>();const positions=new Map<HTMLElement,{top:number;height:number;strength:number}>();
   const paint=()=>{frame=0;if(!preference.matches)return;const scroll=window.scrollY;const viewport=window.innerHeight;
@@ -17,7 +18,7 @@ export function PageMotion(){
   const schedule=()=>{if(!disposed&&preference.matches&&!frame)frame=requestAnimationFrame(paint)};
   const remeasure=()=>{measure=true;schedule()};
   const clear=()=>{revealObserver?.disconnect();depthObserver?.disconnect();resizeObserver?.disconnect();active.clear();positions.clear();if(frame)cancelAnimationFrame(frame);frame=0;revealItems.forEach(item=>{item.classList.remove('revealPending');item.style.removeProperty('--reveal-delay')});layers.forEach(item=>{delete item.dataset.parallax;item.classList.remove('parallaxActive');item.style.removeProperty('--parallax-y')})};
-  const setup=()=>{clear();if(!preference.matches||!('IntersectionObserver' in window))return;
+  const setup=()=>{clear();revealItems=Array.from(document.querySelectorAll<HTMLElement>(revealSelector));layers=Array.from(document.querySelectorAll<HTMLElement>(layerSelector));if(!preference.matches||!('IntersectionObserver' in window))return;
    revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('revealPending');revealObserver?.unobserve(entry.target)}})},{threshold:.08,rootMargin:'0px 0px -24px 0px'});
    revealItems.forEach((item,index)=>{if(item.getBoundingClientRect().top>window.innerHeight){item.style.setProperty('--reveal-delay',`${(index%4)*55}ms`);item.classList.add('revealPending');revealObserver?.observe(item)}});
    depthObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{const item=entry.target as HTMLElement;if(entry.isIntersecting){active.add(item);item.classList.add('parallaxActive')}else{active.delete(item);item.classList.remove('parallaxActive')}});schedule()},{rootMargin:'100px'});
@@ -25,8 +26,10 @@ export function PageMotion(){
    if('ResizeObserver' in window){resizeObserver=new ResizeObserver(remeasure);resizeObserver.observe(document.body)}
    remeasure();
   };
+  const mutations=new MutationObserver(records=>{if(disposed||refreshFrame)return;const selector=revealSelector+','+layerSelector;const added=records.some(record=>Array.from(record.addedNodes).some(node=>node instanceof HTMLElement&&(node.matches(selector)||node.querySelector(selector))));if(added)refreshFrame=requestAnimationFrame(()=>{refreshFrame=0;if(!disposed)setup()})});
+  mutations.observe(document.body,{childList:true,subtree:true});
   setup();window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',remeasure,{passive:true});preference.addEventListener('change',setup);document.fonts?.ready.then(remeasure);
-  return()=>{disposed=true;window.removeEventListener('scroll',schedule);window.removeEventListener('resize',remeasure);preference.removeEventListener('change',setup);clear()};
+  return()=>{disposed=true;mutations.disconnect();if(refreshFrame)cancelAnimationFrame(refreshFrame);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',remeasure);preference.removeEventListener('change',setup);clear()};
  },[pathname]);
  return null;
 }
