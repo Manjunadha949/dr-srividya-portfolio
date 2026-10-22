@@ -554,3 +554,27 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .mobileActionBar .bookingButton>span:has(>.uiArrow){width:24px;height:24px}
 }
 @media(hover:hover){.mobileContactButton:hover{background:var(--color-page)}.mobileActionBar .bookingButton:hover{background:var(--color-button-hover)}}
+
+/* The doctor logo is a home link on every public page. */
+.headerLogo{display:flex;align-items:center;flex:none;width:174px;height:70px;overflow:hidden;border-radius:6px}
+.headerLogo img{display:block;width:174px;height:70px;object-fit:cover;object-position:center;mix-blend-mode:multiply}
+.header .navigationLinks{margin-left:auto}
+@media(max-width:800px){
+ .header{gap:14px}
+ .headerLogo{width:134px;height:54px}
+ .headerLogo img{width:134px;height:54px}
+ .header .mobileNavBar{width:auto;flex:1;min-width:0;gap:10px}
+ .header .mobileHome{font:500 12px/1.4 var(--sans);padding:8px 0;white-space:normal}
+ .header .menuToggle{padding:10px 12px;flex:none}
+}
+@media(max-width:360px){
+ .header{padding-left:14px;padding-right:14px;gap:10px}
+ .headerLogo,.headerLogo img{width:112px;height:48px}
+ .header .mobileHome{font-size:11px}
+ .header .menuToggle{padding:10px;gap:8px}
+}
+
+/* The active menu item needs only its clear white highlight. */
+@media(max-width:800px){
+ .header .navigationLinks.menuOpen a:after,.header .navigationLinks.menuOpen a[aria-current=page]:after{content:none;display:none}
+}
