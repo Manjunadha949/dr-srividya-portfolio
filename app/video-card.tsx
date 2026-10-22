@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useId,useRef,useState} from 'react';
 type Video={title:string;url:string;image?:string};
+function videoTitle(title:string){const sample=/^(Sample resource · [^:]+):\s*(.+)$/.exec(title);return {label:sample?.[1]||'',title:sample?.[2]||title};}
 function videoMedia(video:Video){
  let id='';
  try{const u=new URL(video.url);if(u.hostname==='youtu.be')id=u.pathname.slice(1);if(['www.youtube.com','youtube.com','m.youtube.com'].includes(u.hostname))id=u.searchParams.get('v')||u.pathname.split('/').filter(Boolean)[1]||'';}catch{}
@@ -25,9 +26,9 @@ export function VideoGallery({videos,heading='Health, in conversation',previousL
  const media=selected?videoMedia(selected):null;
  const close=()=>setIndex(null);
  return <>
-  <div className="videoGrid resourceCards" id={gridId}>{(expanded?videos:videos.slice(0,3)).map((video,i)=>{const {thumbnail}=videoMedia(video);return <article className="videoCard" key={video.url+'-'+i}>
+  <div className="videoGrid resourceCards" id={gridId}>{(expanded?videos:videos.slice(0,3)).map((video,i)=>{const {thumbnail}=videoMedia(video);const display=videoTitle(video.title);return <article className="videoCard" key={video.url+'-'+i}>
    <button className="videoPreview" type="button" aria-label={'Play '+video.title} onClick={()=>setIndex(i)}>{thumbnail&&<img src={thumbnail} alt="" loading="lazy" decoding="async" width="1280" height="720"/>}<span className="videoPlay" aria-hidden="true">▶</span></button>
-   <h3><button className="videoTitleButton" type="button" onClick={()=>setIndex(i)}>{video.title}</button></h3>
+   <>{display.label&&<p className="videoAttribution">{display.label}</p>}<h3><button className="videoTitleButton" type="button" aria-label={video.title} title={video.title} onClick={()=>setIndex(i)}>{display.title}</button></h3></>
    <button className="textLink videoOpenButton" type="button" onClick={()=>setIndex(i)}>Watch video ↗</button>
   </article>})}</div>
   <div className="resourceShowAll"><button type="button" className="button" aria-expanded={expanded} aria-controls={gridId} onClick={()=>setExpanded(value=>!value)}>{expanded?showLessLabel:showAllLabel}<span aria-hidden="true">{expanded?'−':'+'}</span></button>{expanded&&<small role="status">Showing all {videos.length} videos</small>}</div>
