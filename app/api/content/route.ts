@@ -1,3 +1,4 @@
+import {revalidatePath} from 'next/cache';
 import {studioIdentity} from '@/lib/studio-auth';
 import { writeStoredContent } from "@/lib/storage";
 import { readContent } from "@/lib/content";
@@ -31,5 +32,5 @@ for(const a of data.videos)if(typeof a.title!=="string"||typeof a.url!=="string"
 for(const item of [...data.articles,...data.videos]){if(item.image && (typeof item.image!=="string" || !/^(https:\/\/|\/[^/])/.test(item.image)))throw Error("Invalid image URL");} for(const a of data.articles)if(a.id && (typeof a.id!=="string"||!/^[a-zA-Z0-9-]+$/.test(a.id)))throw Error("Invalid article ID");
 for(const key of ["adult","child","education","experience"])data[key]=data[key].map((v:string)=>v.trim()).filter(Boolean);
 const encoded=JSON.stringify(data);if(encoded.length>200000)throw Error("Content too large");
-await writeStoredContent(encoded);return Response.json({ok:true});
+await writeStoredContent(encoded);for(const path of ['/','/about','/expertise','/articles','/resources','/contact'])revalidatePath(path);revalidatePath('/articles/[id]','page');revalidatePath('/expertise/[slug]','page');return Response.json({ok:true});
 }catch(e){return Response.json({error:e instanceof Error?e.message:"Invalid data"},{status:400});}}
