@@ -445,3 +445,16 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
  .chairScene .referenceHero blockquote{grid-row:7;position:static;inset:auto;max-width:none;justify-self:start;margin:28px 0 0;padding:0;font-size:20px;text-align:left;transform:none;translate:none}
  .chairScene .referenceHero blockquote i{margin:14px 0 0}
 }
+
+/* Tablet quotation shares the portrait row, with its own space beside the image. */
+@media(min-width:601px) and (max-width:800px), (min-width:801px) and (max-width:1100px) and (orientation:portrait){
+ .chairScene .heroStage>.referenceHero{grid-template-columns:minmax(0,1fr) clamp(150px,18vw,190px);column-gap:16px}
+ .chairScene .referenceCopy h1.shortDoctorName,.chairScene .motto,.chairScene .referenceCopy>p,.chairScene .heroLink,.chairScene .heroBooking{grid-column:1/-1}
+ .chairScene .heroStage .referencePortrait{grid-column:1;grid-row:3;width:100%;max-width:580px;aspect-ratio:1;margin:0 0 24px;justify-self:center}
+ .chairScene .referenceHero blockquote{grid-column:2;grid-row:3;position:static;inset:auto;align-self:start;justify-self:start;max-width:none;margin:40px 0 0;padding:0;font-size:clamp(17px,2vw,21px);line-height:1.5;text-align:left;transform:none;translate:none}
+ .chairScene .referenceHero blockquote i{margin:14px 0 0}
+}
+@media(min-width:601px) and (max-width:800px){
+ .chairScene .heroStage>.referenceHero{padding-left:22px;padding-right:22px}
+ .chairScene .referenceCopy h1.shortDoctorName,.chairScene .motto,.chairScene .referenceCopy>p,.chairScene .heroLink,.chairScene .heroBooking{margin-left:0;margin-right:0}
+}
