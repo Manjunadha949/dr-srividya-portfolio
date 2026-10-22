@@ -458,3 +458,40 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
  .chairScene .heroStage>.referenceHero{padding-left:22px;padding-right:22px}
  .chairScene .referenceCopy h1.shortDoctorName,.chairScene .motto,.chairScene .referenceCopy>p,.chairScene .heroLink,.chairScene .heroBooking{margin-left:0;margin-right:0}
 }
+
+/* A compact navigation panel with comfortable touch targets and a clear current page. */
+.navBackdrop{display:none}
+@media(max-width:800px){
+ .header .mobileNavBar{position:relative;z-index:3}
+ .header .menuToggle{border-radius:999px;min-height:44px;padding:10px 16px;gap:12px;background:var(--color-surface);border:1px solid var(--line);font:500 12px/1.4 var(--sans)}
+ .header .menuToggle[aria-expanded=true]{background:var(--ink);color:var(--color-surface);border-color:var(--ink)}
+ .header .menuToggle[aria-expanded=true] .menuGlyph i{background:currentColor}
+ .navBackdrop{display:block;position:fixed;inset:var(--header-height) 0 0;width:100%;height:calc(100dvh - var(--header-height));border:0;border-radius:0;background:rgb(16 41 51 / .16);z-index:1;cursor:default}
+ .header .navigationLinks.menuOpen{z-index:2;top:calc(100% + 10px);left:12px;right:12px;width:auto;max-height:calc(100dvh - var(--header-height) - 32px);margin:0;padding:14px;gap:5px;border:1px solid var(--line);border-radius:20px;background:var(--blue);box-shadow:0 14px 36px var(--color-shadow);font:500 16px/1.5 var(--sans)}
+ .header .navigationLinks.menuOpen a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:50px;padding:12px 16px;margin:0;border:1px solid transparent;border-radius:12px;color:var(--ink);text-decoration:none}
+ .header .navigationLinks.menuOpen a:after{content:'↗';font-size:20px;line-height:1;color:var(--muted)}
+ .header .navigationLinks.menuOpen a[aria-current=page]{background:var(--color-surface);border-color:var(--line);color:var(--ink)}
+ .header .navigationLinks.menuOpen a[aria-current=page]:after{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--orange);color:var(--ink)}
+ .header .navigationLinks.menuOpen a:hover{background:var(--color-surface);color:var(--ink)}
+ .header .navigationLinks.menuOpen a:focus-visible,.menuToggle:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+}
+@media(max-width:800px) and (prefers-reduced-motion:no-preference){
+ .header .navigationLinks.menuOpen{animation:menuPanelEnter .22s ease-out both;transform-origin:top right}
+ .navBackdrop{animation:menuBackdropEnter .2s ease-out both}
+ @keyframes menuPanelEnter{from{opacity:0;transform:translateY(-8px) scale(.985)}to{opacity:1;transform:none}}
+ @keyframes menuBackdropEnter{from{opacity:0}to{opacity:1}}
+}
+
+/* One crisp arrow system for action links and buttons. */
+.uiArrow{display:inline-block;vertical-align:middle;flex:none;overflow:visible;transition:translate .2s ease}
+.uiArrow-up-right{rotate:-45deg}.uiArrow-left{rotate:180deg}
+.button>span:has(>.uiArrow){display:inline-grid;place-items:center;width:32px;height:32px;flex:none;border-radius:50%;line-height:1}
+.bookingButton>span:has(>.uiArrow){width:26px;height:26px}
+.textLink:has(>.uiArrow){display:inline-flex;align-items:center;gap:10px}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ a:hover .uiArrow-right,button:hover .uiArrow-right{translate:3px 0}
+ a:hover .uiArrow-up-right,button:hover .uiArrow-up-right{translate:2px -2px}
+ a:hover .uiArrow-left,button:hover .uiArrow-left{translate:-3px 0}
+}
+@media(prefers-reduced-motion:reduce){.uiArrow{transition:none}}
+.videoDialogNavigation button{display:inline-flex;align-items:center;justify-content:center;gap:10px}

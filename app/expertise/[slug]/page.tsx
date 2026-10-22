@@ -1,3 +1,4 @@
+import { ArrowIcon } from '@/app/arrow-icon';
 import { notFound } from 'next/navigation';
 import { readContent } from '@/lib/content';
 import { careCategories,detailFor,expertiseEntries } from '@/lib/expertise';

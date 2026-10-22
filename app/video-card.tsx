@@ -1,4 +1,5 @@
 'use client';
+import {ArrowIcon} from './arrow-icon';
 import {useEffect,useId,useRef,useState} from 'react';
 type Video={title:string;url:string;image?:string};
 function videoTitle(title:string){const sample=/^(Sample resource · [^:]+):\s*(.+)$/.exec(title);return {label:sample?.[1]||'',title:sample?.[2]||title};}
@@ -29,16 +30,16 @@ export function VideoGallery({videos,heading='Health, in conversation',previousL
   <div className="videoGrid resourceCards" id={gridId}>{(expanded?videos:videos.slice(0,3)).map((video,i)=>{const {thumbnail}=videoMedia(video);const display=videoTitle(video.title);return <article className="videoCard" key={video.url+'-'+i}>
    <button className="videoPreview" type="button" aria-label={'Play '+video.title} onClick={()=>setIndex(i)}>{thumbnail&&<img src={thumbnail} alt="" loading="lazy" decoding="async" width="1280" height="720"/>}<span className="videoPlay" aria-hidden="true">▶</span></button>
    <>{display.label&&<p className="videoAttribution">{display.label}</p>}<h3><button className="videoTitleButton" type="button" aria-label={video.title} title={video.title} onClick={()=>setIndex(i)}>{display.title}</button></h3></>
-   <button className="textLink videoOpenButton" type="button" onClick={()=>setIndex(i)}>Watch video ↗</button>
+   <button className="textLink videoOpenButton" type="button" onClick={()=>setIndex(i)}>Watch video <ArrowIcon direction="up-right"/></button>
   </article>})}</div>
   <div className="resourceShowAll"><button type="button" className="button" aria-expanded={expanded} aria-controls={gridId} onClick={()=>setExpanded(value=>!value)}>{expanded?showLessLabel:showAllLabel}<span aria-hidden="true">{expanded?'−':'+'}</span></button>{expanded&&<small role="status">Showing all {videos.length} videos</small>}</div>
   <dialog ref={dialog} className="videoDialog" aria-labelledby={titleId} onCancel={close} onClose={close} onClick={event=>{if(event.target===event.currentTarget){const bounds=event.currentTarget.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)close();}}}>
    {selected&&<div className="videoDialogContent">
     <button className="videoDialogClose" type="button" onClick={close} aria-label="Close video" autoFocus>×</button>
     <p className="eyebrow">{heading}</p><h2 id={titleId}>{selected.title}</h2>
-    {media?.embed?<iframe key={index} className="videoDialogPlayer" src={media.embed+'?autoplay=1'} title={selected.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen/>:<a className="button" href={selected.url} target="_blank" rel="noopener noreferrer">Open video ↗</a>}
+    {media?.embed?<iframe key={index} className="videoDialogPlayer" src={media.embed+'?autoplay=1'} title={selected.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen/>:<a className="button" href={selected.url} target="_blank" rel="noopener noreferrer">Open video <span><ArrowIcon direction="up-right"/></span></a>}
     <p className="videoDialogNote"><a href={selected.url} target="_blank" rel="noopener noreferrer">Watch original video ↗</a></p>
-    <nav className="videoDialogNavigation" aria-label="Video navigation"><button type="button" disabled={index===0} onClick={()=>setIndex(i=>i===null?null:Math.max(0,i-1))}>{previousLabel}</button><span aria-live="polite">Video {(index??0)+1} of {videos.length}</span><button type="button" disabled={index===videos.length-1} onClick={()=>setIndex(i=>i===null?null:Math.min(videos.length-1,i+1))}>{nextLabel}</button></nav>
+    <nav className="videoDialogNavigation" aria-label="Video navigation"><button type="button" disabled={index===0} onClick={()=>setIndex(i=>i===null?null:Math.max(0,i-1))}><ArrowIcon direction="left"/>{previousLabel.replace(/^[←⟵]\s*/, "")}</button><span aria-live="polite">Video {(index??0)+1} of {videos.length}</span><button type="button" disabled={index===videos.length-1} onClick={()=>setIndex(i=>i===null?null:Math.min(videos.length-1,i+1))}>{nextLabel.replace(/\s*[→⟶]$/, "")}<ArrowIcon/></button></nav>
    </div>}
   </dialog>
  </>;
