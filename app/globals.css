@@ -372,9 +372,11 @@ html{scroll-padding-top:calc(var(--header-height) + 20px)}
 @media(max-width:800px){.chairScene .referenceHero blockquote{font-size:18px;padding-top:20px;padding-bottom:28px}.referenceHero blockquote>span+span{margin-top:2px}}
 
 /* A clear, compact expertise link on the cream section. */
-.careSectionFooter .button.secondary{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;padding:10px 14px 10px 20px;border:1px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);font:500 13px/1.5 var(--sans);letter-spacing:.15px;text-transform:none;box-shadow:none}
-.careSectionFooter .button.secondary>span{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:50%;background:var(--orange);color:var(--ink);font-size:21px;line-height:1}
-.careSectionFooter .button.secondary:hover{background:var(--ink);color:var(--color-surface);transform:translateY(-2px)}
+.careSectionFooter .button.secondary,.button.journalExploreButton{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;padding:10px 14px 10px 20px;border:1px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);font:500 13px/1.5 var(--sans);letter-spacing:.15px;text-transform:none;box-shadow:none}
+.careSectionFooter .button.secondary>span,.button.journalExploreButton>span{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:50%;background:var(--orange);color:var(--ink);font-size:21px;line-height:1}
+.careSectionFooter .button.secondary:hover,.button.journalExploreButton:hover{background:var(--ink);color:var(--color-surface);transform:translateY(-2px)}
 /* Small independent layers provide depth while preserving fixed navigation. */
 @media(prefers-reduced-motion:no-preference){[data-parallax]{transform:translate3d(0,var(--parallax-y,0px),0)}.chairScene .heroStage .referencePortrait[data-parallax]{transform:translate3d(0,var(--parallax-y,0px),0)}[data-parallax].parallaxActive{will-change:transform}}
 @media(prefers-reduced-motion:reduce){[data-parallax]{transform:none!important}}
+
+.button.journalExploreButton{margin-top:20px;max-width:100%;text-decoration:none}.button.journalExploreButton:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
