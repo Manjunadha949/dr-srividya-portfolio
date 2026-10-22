@@ -40,7 +40,7 @@
 }
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
-  --color-brand: #c7e8fa;
+  --color-brand: #c6e7fa;
   --color-page: var(--color-brand);
   --color-surface: #ffffff;
   --color-surface-soft: #edf3f6;
@@ -56,7 +56,7 @@
   --color-mask: #000000;
   --color-overlay: rgba(20,43,54,.76);
   --color-glass: rgba(255,255,255,.3);
-  --color-brand-glass: rgba(199,232,250,.85);
+  --color-brand-glass: rgba(198,231,250,.85);
   --color-shadow-subtle: rgba(20,43,54,.08);
   --color-shadow-soft: rgba(20,43,54,.13);
   --color-shadow: rgba(20,43,54,.2);
@@ -70,6 +70,7 @@
   --serif: 'Bodoni Moda',Didot,Georgia,serif;
   --body-serif: Georgia,serif;
   --sans: 'DM Sans',Arial,sans-serif;
+  --header-height: 78px;
   --space: clamp(24px,4.9vw,80px);
   --section: clamp(44px,5vw,80px);
   --radius-button: 8px;
@@ -315,4 +316,21 @@ details[open] p{animation:enter .3s ease-out both}
 @media(max-width:1000px){.textFieldGrid{grid-template-columns:1fr}}
 @media(max-width:600px){.textFieldCard{padding:16px}.textPageTabs{gap:6px}.textPageTabs button{padding:10px;font-size:12px}.textGroupHeading{align-items:flex-start}.textEditorIntro h2,.textGroupHeading h2{font-size:25px}.studio .studioTop{position:static}}
 /* Compact mobile portrait framing without fades or background shading. */
-@media(max-width:600px){.chairScene .heroStage>.referenceHero{padding-top:18px}.chairScene .referenceCopy h1.shortDoctorName{font-size:clamp(44px,11.5vw,62px)}.chairScene .referenceCopy .motto{margin-bottom:0}.chairScene .referencePortrait{height:clamp(270px,72vw,355px);margin-top:-8px;margin-bottom:10px}.chairScene .referencePortrait img{object-position:78% bottom;transform:scale(1.12);transform-origin:78% bottom}.chairScene .referenceCopy>p{font-size:17px;line-height:1.6;margin-top:8px}}
+@media(max-width:600px){.chairScene .heroStage>.referenceHero{padding-top:18px}.chairScene .referenceCopy h1.shortDoctorName{font-size:clamp(44px,11.5vw,62px)}.chairScene .referenceCopy .motto{margin-bottom:18px}.chairScene .referencePortrait{height:clamp(270px,72vw,355px);margin-top:0;margin-bottom:10px}.chairScene .referencePortrait img{object-position:78% bottom;transform:scale(1.12);transform-origin:78% bottom}.chairScene .referenceCopy>p{font-size:17px;line-height:1.6;margin-top:8px}}
+
+/* Keep navigation on screen, with space reserved before page content. */
+html{scroll-padding-top:calc(var(--header-height) + 20px)}
+.header{position:fixed;inset:0 0 auto;width:100%;height:var(--header-height);min-height:var(--header-height);z-index:50;padding-top:0;padding-bottom:0;background:var(--blue);border:0;box-shadow:none}
+.headerSpacer{height:var(--header-height);flex:0 0 var(--header-height);background:var(--blue)}
+.chairScene .heroStage{min-height:calc(100svh - var(--header-height))}
+@media(min-width:801px){.chairScene .heroStage .referencePortrait img{object-position:65% top}}
+@media(max-width:800px){
+ :root{--header-height:66px}
+ .header{display:flex;align-items:center}
+ .header .mobileNavBar{width:100%}
+ .header .navigationLinks.menuOpen{max-height:calc(100dvh - var(--header-height));overflow-y:auto;overscroll-behavior:contain;background:var(--blue)}
+}
+
+/* Keep the motto above the portrait surface so every letter remains visible. */
+.chairScene .motto{position:relative;z-index:2;overflow:visible;line-height:1.8}
+@media(max-width:800px){.chairScene .motto{min-height:20px;margin-bottom:18px;align-self:start}.chairScene .referencePortrait{margin-top:0}}

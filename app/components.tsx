@@ -3,7 +3,7 @@ import {bookingUrl} from '@/lib/booking';
 import { readContent } from '@/lib/content';
 import { SocialLinks } from './social-links';
 import { Navigation } from './navigation';
-export async function Header({home=false}:{home?:boolean}={}){const d=await readContent();return <header className={"header"+(home?" referenceHeader":"")}><Navigation texts={d.siteText}/></header>}
+export async function Header({home=false}:{home?:boolean}={}){const d=await readContent();return <><header className={"header"+(home?" referenceHeader":"")}><Navigation texts={d.siteText}/></header><div className="headerSpacer" aria-hidden="true"/></>}
 export async function Footer(){
   const content=await readContent();
   const text=content.siteText;
