@@ -653,3 +653,7 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .header .compactMoreLinks a[aria-current=page]{background:var(--blue);padding-left:23px}
 }
 @media(max-width:360px){.header{padding-left:12px;padding-right:12px}.header .compactTabs{font-size:13px;gap:2px}}
+
+/* A small signature accent beneath the doctor's specialty. */
+.referenceCopy .shortDoctorName:after{content:'';display:block;width:54px;height:3px;margin-top:24px;border-radius:3px;background:var(--orange)}
+@media(max-width:800px){.referenceCopy .shortDoctorName:after{width:44px;height:2px;margin-top:18px}}
