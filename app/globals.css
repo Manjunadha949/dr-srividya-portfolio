@@ -636,3 +636,20 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .header .compactMoreLinks a[aria-current=page]{position:relative;padding-left:20px}
  .header .compactMoreLinks a[aria-current=page]:after{display:block;content:'';position:absolute;left:7px;top:14px;bottom:14px;width:3px;height:auto;border-radius:3px;background:var(--orange)}
 }
+
+/* Refined mobile navigation: lighter framing and a restrained active mark. */
+@media(max-width:800px){
+ :root{--header-height:80px}
+ .header{padding:12px 18px}
+ .header .compactTabs{padding:4px;gap:5px;border-radius:16px;border-color:rgb(20 43 54 / .08);background:rgb(255 255 255 / .52);box-shadow:0 4px 14px rgb(20 43 54 / .035);font-size:14px;letter-spacing:.01em}
+ .header .compactTabs>a,.compactMoreToggle{min-height:44px;padding:11px 4px;border-radius:11px}
+ .header .compactTabs>a[aria-current=page],.compactMoreToggle[data-active]{background:var(--color-surface);color:var(--ink);box-shadow:0 1px 4px rgb(20 43 54 / .06);font-weight:600}
+ .header .compactTabs>a[aria-current=page]:after,.compactMoreToggle[data-active]:after{left:32%;right:32%;bottom:5px;height:2px}
+ .compactMoreToggle{gap:8px}
+ .compactMoreToggle svg{width:12px;height:12px;opacity:.7}
+ .compactMoreLinks{top:calc(100% + 13px);right:-4px;min-width:176px;padding:8px;border-radius:15px;border-color:rgb(20 43 54 / .08);box-shadow:0 12px 28px rgb(20 43 54 / .10)}
+ .header .compactMoreLinks a{min-height:46px;padding:12px 15px;font-size:14px;border-radius:9px}
+ .header .compactMoreLinks a+a{margin-top:3px}
+ .header .compactMoreLinks a[aria-current=page]{background:var(--blue);padding-left:23px}
+}
+@media(max-width:360px){.header{padding-left:12px;padding-right:12px}.header .compactTabs{font-size:13px;gap:2px}}
