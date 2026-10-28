@@ -657,3 +657,16 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 /* A small signature accent beneath the doctor's specialty. */
 .referenceCopy .shortDoctorName:after{content:'';display:block;width:54px;height:3px;margin-top:24px;border-radius:3px;background:var(--orange)}
 @media(max-width:800px){.referenceCopy .shortDoctorName:after{width:44px;height:2px;margin-top:18px}}
+
+/* Center the full navigation row on desktop and larger tablets. */
+@media(min-width:801px){
+ .header{justify-content:center}
+ .header .navigationLinks{margin-left:0;margin-right:0;justify-content:center}
+}
+
+/* A composed name and specialty lockup on compact screens. */
+@media(max-width:800px){
+ .referenceCopy .shortDoctorName{line-height:1.08;letter-spacing:-.035em}
+ .referenceCopy .shortDoctorName>span{margin-top:12px;line-height:1.2;letter-spacing:-.025em}
+ .referenceCopy .shortDoctorName:after{width:64px;height:3px;margin-top:21px;border-radius:2px;box-shadow:none}
+}
