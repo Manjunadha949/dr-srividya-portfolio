@@ -610,3 +610,6 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .compactTabs a:focus-visible,.compactMoreToggle:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:6px}
 }
 @media(prefers-reduced-motion:reduce){.compactMoreToggle svg{transition:none}}
+
+/* Preserve breathing room beneath the specialty without a tagline. */
+.referenceCopy>.shortDoctorName{margin-bottom:28px}
