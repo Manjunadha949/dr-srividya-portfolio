@@ -613,3 +613,19 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 
 /* Preserve breathing room beneath the specialty without a tagline. */
 .referenceCopy>.shortDoctorName{margin-bottom:28px}
+
+/* A quiet floating navigation panel for smaller screens. */
+@media(max-width:800px){
+ :root{--header-height:82px}
+ .header{padding:12px 16px;background:var(--blue)}
+ .header .compactTabs{padding:5px;gap:4px;border:1px solid rgb(20 43 54 / .10);border-radius:19px;background:rgb(255 255 255 / .64);box-shadow:0 5px 18px rgb(20 43 54 / .05);font-size:14px}
+ .header .compactTabs>a,.compactMoreToggle{min-height:44px;padding:11px 4px;border-radius:13px;transition:background .18s ease,color .18s ease}
+ .header .compactTabs>a[aria-current=page],.compactMoreToggle[data-active]{background:var(--ink);color:white;box-shadow:0 3px 8px rgb(20 43 54 / .12);font-weight:500}
+ .header .compactTabs>a[aria-current=page]:after,.compactMoreToggle[data-active]:after{display:none}
+ .header .compactTabs>a:not([aria-current]):hover,.compactMoreToggle:hover,.compactMoreToggle[aria-expanded=true]:not([data-active]){background:rgb(255 255 255 / .8);color:var(--ink)}
+ .compactMoreLinks{top:calc(100% + 12px);right:-5px;min-width:168px;padding:8px;border-radius:17px;background:var(--color-surface);box-shadow:0 12px 30px rgb(20 43 54 / .14);animation:menuPanelEnter .18s ease-out both}
+ .header .compactMoreLinks a{padding:12px 14px;min-height:46px;border-radius:10px;font-size:14px}
+ .header .compactMoreLinks a[aria-current=page]{font-weight:600;color:var(--ink)}
+}
+@media(max-width:360px){.header{padding-left:10px;padding-right:10px}.header .compactTabs{font-size:13px;gap:2px}}
+@media(prefers-reduced-motion:reduce){.header .compactTabs>a,.compactMoreToggle{transition:none}.compactMoreLinks{animation:none}}
