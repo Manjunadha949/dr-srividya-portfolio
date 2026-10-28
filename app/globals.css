@@ -629,3 +629,10 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 }
 @media(max-width:360px){.header{padding-left:10px;padding-right:10px}.header .compactTabs{font-size:13px;gap:2px}}
 @media(prefers-reduced-motion:reduce){.header .compactTabs>a,.compactMoreToggle{transition:none}.compactMoreLinks{animation:none}}
+
+/* Orange markers identify the current mobile page and More section. */
+@media(max-width:800px){
+ .header .compactTabs>a[aria-current=page]:after,.compactMoreToggle[data-active]:after{display:block;content:'';position:absolute;left:28%;right:28%;bottom:4px;width:auto;height:3px;border-radius:3px;background:var(--orange)}
+ .header .compactMoreLinks a[aria-current=page]{position:relative;padding-left:20px}
+ .header .compactMoreLinks a[aria-current=page]:after{display:block;content:'';position:absolute;left:7px;top:14px;bottom:14px;width:3px;height:auto;border-radius:3px;background:var(--orange)}
+}
