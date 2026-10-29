@@ -9,7 +9,7 @@ export function PagePrefetch(){
   const warm=(event:Event)=>{
    if(!(event.target instanceof Element))return;
    const anchor=event.target.closest<HTMLAnchorElement>('a[href]');
-   if(!anchor||anchor.target==='_blank'||anchor.hasAttribute('download'))return;
+   if(!anchor||anchor.closest('.compactTabs,.navigationLinks')||anchor.target==='_blank'||anchor.hasAttribute('download'))return;
    const url=new URL(anchor.href,location.href);
    if(url.origin!==location.origin||!publicPath.test(url.pathname)||url.search||url.pathname===location.pathname||links.has(url.href)||links.size>=6)return;
    const link=document.createElement('link');link.rel='prefetch';link.as='document';link.href=url.href;document.head.appendChild(link);links.set(url.href,link);
