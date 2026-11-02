@@ -695,3 +695,6 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 
 /* Warm white only for the homepage introduction; retain blue elsewhere. */
 .referenceHome>.header,.referenceHome>.headerSpacer,.referenceHome.chairScene .heroStage,.referenceHome.chairScene .referenceHero,.referenceHome.chairScene .referencePortrait{background:var(--color-page)}
+
+/* Blue returns behind the colourful home expertise previews. */
+.referenceHome .referenceCare{background:var(--blue)}
