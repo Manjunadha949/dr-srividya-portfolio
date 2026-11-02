@@ -2,7 +2,7 @@
 @font-face{font-family:'Inter';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/inter-400.woff2') format('woff2')}
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
-  --color-brand: #faf9f5;
+  --color-brand: #d3e8f2;
   --color-page: #faf9f5;
   --color-surface: #ffffff;
   --color-surface-soft: var(--color-brand);
@@ -692,3 +692,6 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 .referenceHome .referenceCareItem .icon{background:rgb(255 255 255 / .45)}
 .referenceHome .referenceCareItem p{color:var(--ink)}
 @media(min-width:1101px){.referenceHome .referenceCare{grid-template-columns:1.7fr repeat(4,minmax(0,1fr))}}
+
+/* Warm white only for the homepage introduction; retain blue elsewhere. */
+.referenceHome>.header,.referenceHome>.headerSpacer,.referenceHome.chairScene .heroStage,.referenceHome.chairScene .referenceHero,.referenceHome.chairScene .referencePortrait{background:var(--color-page)}
