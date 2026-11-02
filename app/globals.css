@@ -2,7 +2,7 @@
 @font-face{font-family:'Inter';font-style:normal;font-weight:400 600;font-display:swap;src:url('/fonts/inter-400.woff2') format('woff2')}
 /* Shared theme: change colours and component tokens here for the entire site. */
 :root {
-  --color-brand: #d3e8f2;
+  --color-brand: #faf9f5;
   --color-page: #faf9f5;
   --color-surface: #ffffff;
   --color-surface-soft: var(--color-brand);
@@ -682,3 +682,13 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 /* Immediate lightweight feedback while a prefetched route finishes. */
 .routeLoading{min-height:60svh;padding:calc(var(--header-height) + 32px) var(--space);color:var(--muted);font:14px/1.6 var(--sans);background:var(--blue)}
 .routeLoading>span{display:block;width:44px;height:3px;margin-bottom:18px;border-radius:3px;background:var(--orange)}
+
+/* Four home expertise previews with gentle, distinct colour fills. */
+.referenceHome .referenceCareItem{padding:22px 18px;border:0;border-radius:14px;color:var(--ink)}
+.referenceHome .referenceCareItem:nth-of-type(1){background:#f3dfaa}
+.referenceHome .referenceCareItem:nth-of-type(2){background:#cddfce}
+.referenceHome .referenceCareItem:nth-of-type(3){background:#edc8bd}
+.referenceHome .referenceCareItem:nth-of-type(4){background:#d9d5e8}
+.referenceHome .referenceCareItem .icon{background:rgb(255 255 255 / .45)}
+.referenceHome .referenceCareItem p{color:var(--ink)}
+@media(min-width:1101px){.referenceHome .referenceCare{grid-template-columns:1.7fr repeat(4,minmax(0,1fr))}}
