@@ -714,3 +714,49 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 
 /* Shared blue navigation background on every public page. */
 .header,.headerSpacer,.referenceHome>.header,.referenceHome>.headerSpacer{background:var(--blue)}
+
+/* A compact, consistent reading scale across public pages. */
+:root{--section:44px}
+.pageHero{padding-top:30px;padding-bottom:34px}
+.pageHero .eyebrow{margin-bottom:12px}
+.pageHero h1,.articleHero h1{font-size:clamp(32px,3.5vw,52px);line-height:1.16;letter-spacing:-.025em;max-width:1100px}
+.pageLead{font:17px/1.6 var(--sans);max-width:680px;margin-top:16px}
+.pageBody{padding-top:40px;padding-bottom:44px}
+.pageBody h2,.section h2,.referenceHome h2{font-size:clamp(26px,2.4vw,36px);line-height:1.2;letter-spacing:-.025em}
+.aboutIntro h2{font-size:clamp(28px,2.7vw,40px)}
+.aboutIntro{gap:40px;align-items:start}
+.aboutIntro p:last-child,.articleTile p,.expertiseArticle p,.articleText{font-size:16px;line-height:1.65}
+.aboutIntro p:last-child{margin-top:18px}
+.aboutPhoto{max-height:440px;border-radius:64px 64px 8px 8px}
+.details{margin-top:36px;padding-top:26px}
+.pageBody h3,.articleTile h2,.videoCard h3,.resourceCards .videoCard h3{font-size:23px;line-height:1.3}
+.articleGrid,.videoGrid{gap:26px}
+.sectionHeading{margin-bottom:22px;gap:24px}
+.expertiseDetail{gap:40px}
+.expertiseColumns h2{margin-bottom:18px}
+.expertiseList>a{padding:14px 0}
+.expertiseList>a h3{font-size:20px}
+.referenceHome.chairScene .referenceCopy h1.shortDoctorName{font-size:clamp(44px,5vw,76px);line-height:1.1}
+.referenceHome.chairScene .referenceCopy h1.shortDoctorName span{font-size:.48em;line-height:1.25}
+.referenceHome.chairScene .referenceCopy>p{font-size:17px;line-height:1.6;max-width:440px}
+.referenceHome .referenceCare,.referenceHome .referenceArticles{padding-top:32px;padding-bottom:32px}
+.referenceHome .referenceCareItem h3{font-size:20px}
+.referenceHome .referenceArticle h3{font-size:23px}
+@media(max-width:800px){
+ :root{--section:32px}
+ .pageHero{padding-top:24px;padding-bottom:28px}
+ .pageHero h1,.articleHero h1{font-size:34px}
+ .pageBody{padding-top:30px;padding-bottom:34px}
+ .pageLead{font-size:16px;margin-top:14px}
+ .aboutIntro{gap:26px}
+ .pageBody h2,.section h2,.referenceHome h2,.aboutIntro h2{font-size:28px}
+ .referenceHome.chairScene .referenceCopy h1.shortDoctorName{font-size:40px}
+ .referenceHome.chairScene .referenceCopy>p{font-size:16px}
+ .details{margin-top:28px;padding-top:22px}
+}
+@media(max-width:480px){
+ .pageHero h1,.articleHero h1{font-size:30px}
+ .referenceHome.chairScene .referenceCopy h1.shortDoctorName{font-size:36px}
+ .pageBody h2,.section h2,.referenceHome h2,.aboutIntro h2{font-size:26px}
+ .pageBody h3,.resourceCards .videoCard h3{font-size:21px}
+}
