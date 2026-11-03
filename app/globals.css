@@ -694,7 +694,7 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 @media(min-width:1101px){.referenceHome .referenceCare{grid-template-columns:1.7fr repeat(4,minmax(0,1fr))}}
 
 /* Warm white only for the homepage introduction; retain blue elsewhere. */
-.referenceHome>.header,.referenceHome>.headerSpacer,.referenceHome.chairScene .heroStage,.referenceHome.chairScene .referenceHero,.referenceHome.chairScene .referencePortrait{background:var(--color-page)}
+.referenceHome.chairScene .heroStage,.referenceHome.chairScene .referenceHero,.referenceHome.chairScene .referencePortrait{background:var(--color-page)}
 
 /* Blue returns behind the colourful home expertise previews. */
 .referenceHome .referenceCare{background:var(--blue)}
@@ -711,3 +711,6 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 .referenceHome .referenceArticles{background:var(--color-page);margin-top:0;padding-top:44px;padding-bottom:44px}
 @media(max-width:600px){.referenceHome .referenceCareItem{grid-template-rows:54px minmax(52px,auto) 1fr;gap:14px;padding:20px 16px}}
 @media(max-width:380px){.referenceHome .referenceCareItem{grid-template-rows:54px auto auto}}
+
+/* Shared blue navigation background on every public page. */
+.header,.headerSpacer,.referenceHome>.header,.referenceHome>.headerSpacer{background:var(--blue)}
