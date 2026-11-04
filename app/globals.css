@@ -782,7 +782,7 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
 @media(prefers-reduced-motion:reduce){.header .navigationLinks a{transition:none}}
 
 /* Keep the entire rose portrait in its own frame, clear of the hero copy. */
-.rosePortraitHome .heroStage .referencePortrait{aspect-ratio:1103/1426;width:min(100%,480px);max-width:100%;overflow:hidden;border-radius:18px;transform:none}
+.rosePortraitHome .heroStage .referencePortrait{aspect-ratio:1103/1426;width:min(100%,480px);max-width:100%;overflow:visible;transform:none}
 .rosePortraitHome .heroStage .referencePortrait img{object-fit:contain;object-position:center}
 @media(max-width:800px){
  .rosePortraitHome .heroStage .referencePortrait{width:min(calc(100% - 44px),480px)}
