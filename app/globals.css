@@ -780,3 +780,16 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .compactMoreLinks{right:0;top:calc(100% + 12px);border-radius:12px}
 }
 @media(prefers-reduced-motion:reduce){.header .navigationLinks a{transition:none}}
+
+/* Keep the entire rose portrait in its own frame, clear of the hero copy. */
+.rosePortraitHome .heroStage .referencePortrait{aspect-ratio:1103/1426;width:min(100%,480px);max-width:100%;overflow:hidden;border-radius:18px;transform:none}
+.rosePortraitHome .heroStage .referencePortrait img{object-fit:contain;object-position:center}
+@media(max-width:800px){
+ .rosePortraitHome .heroStage .referencePortrait{width:min(calc(100% - 44px),480px)}
+}
+@media(min-width:1101px), (min-width:801px) and (orientation:landscape){
+ .rosePortraitHome .heroStage>.referenceHero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr auto;gap:0 32px;align-items:center;padding:32px var(--space)}
+ .rosePortraitHome .referenceCopy{grid-column:1;grid-row:1;width:auto;padding:0}
+ .rosePortraitHome .heroStage .referencePortrait{grid-column:2;grid-row:1/3;position:relative;inset:auto;height:auto;justify-self:center;margin:0;width:min(100%,480px, max(330px,calc((100svh - 144px) * .7735)))}
+ .rosePortraitHome .referenceHero blockquote{grid-column:1;grid-row:2;position:static;inset:auto;margin:24px 0 0;max-width:none}
+}
