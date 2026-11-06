@@ -10,6 +10,11 @@ const additionalHospitalVideos: Content['videos'] = [
   { title: "How much time should students spend studying each day? (Short)", url: 'https://www.youtube.com/shorts/sZFJlU77VAw' },
 ];
 
+const relatedHospitalVideos: Content['videos'] = [
+  { title: 'Psychiatry Stories, Episode 1: Doctor and Patient — Mania', url: 'https://www.youtube.com/watch?v=tYYEbjc7W2g' },
+  { title: 'How much do young people know about mental health? Featuring the cousins', url: 'https://www.youtube.com/watch?v=sP_es-IvnxA' },
+];
+
 const hospitalVideos: Content['videos'] = [
   { title: "Five ways to build confidence in children", url: 'https://www.youtube.com/watch?v=YfM7CXPqNAk' },
   { title: "Why do we feel fear?", url: 'https://www.youtube.com/watch?v=kS1rlppziyQ' },
@@ -34,7 +39,7 @@ const published=existing.flatMap((article,index)=>entries.includes(article)&&!is
 const replacements=patientArticles.map((article,index)=>({...article,image:demos[index]?.image})).filter(article=>!published.some(item=>item.id===article.id));
 saved.articles=demos.length?[...replacements,...published]:saved.articleContentVersion==='1'?published:[...published,...replacements];
 saved.articleContentVersion='2';
-}if (saved.videoContentVersion !== '1' && saved.videoContentVersion !== '2') {
+}if (saved.videoContentVersion !== '1' && saved.videoContentVersion !== '2' && saved.videoContentVersion !== '3') {
   saved.videos = hospitalVideos;
   saved.videoContentVersion = '1';
 }
@@ -42,6 +47,11 @@ if (saved.videoContentVersion === '1') {
   const videos: Content['videos'] = saved.videos;
   saved.videos = [...videos, ...additionalHospitalVideos.filter(video => !videos.some(existing => existing.url === video.url))];
   saved.videoContentVersion = '2';
+}
+if (saved.videoContentVersion === '2') {
+  const videos: Content['videos'] = saved.videos;
+  saved.videos = [...relatedHospitalVideos.filter(video => !videos.some(existing => existing.url === video.url)), ...videos];
+  saved.videoContentVersion = '3';
 }
 const faqUpdates = [
  ['How can I arrange a consultation?', 'Contact details and consultation timings will be added shortly.', 'Visit the Contact page and use the listed phone or WhatsApp option to ask about appointment availability. The clinic can confirm the date, time, location, and what to bring.'],
