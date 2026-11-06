@@ -793,3 +793,25 @@ p,.referenceHome p,.articleText,.aboutIntro p:last-child{font-family:var(--sans)
  .rosePortraitHome .heroStage .referencePortrait{grid-column:2;grid-row:1;position:relative;inset:auto;height:auto;justify-self:center;margin:0;width:min(100%,480px, max(330px,calc((100svh - 144px) * .7735)))}
  .rosePortraitHome .referenceHero blockquote{grid-column:3;grid-row:1;position:static;inset:auto;align-self:start;margin:clamp(24px,5vw,80px) 0 0;padding:0;max-width:16ch;font-size:clamp(15px,1.35vw,21px)}
 }
+
+/* Keep journal links aligned across cards with different amounts of copy. */
+.referenceHome .referenceArticles > .referenceArticle {
+ align-self: stretch;
+ display: flex;
+ flex-direction: column;
+}
+.referenceHome .referenceArticle > .articleThumbnail,
+.referenceHome .referenceArticle > .articlePlaceholder {
+ aspect-ratio: 16 / 9;
+ flex-shrink: 0;
+}
+.referenceHome .referenceArticle > p {
+ display: -webkit-box;
+ -webkit-box-orient: vertical;
+ -webkit-line-clamp: 3;
+ overflow: hidden;
+}
+.referenceHome .referenceArticle > small { margin-top: auto; padding-top: 12px; }
+@media (max-width: 600px) {
+ .referenceHome .referenceArticles > .referenceArticle ~ .referenceArticle { display: none; }
+}
