@@ -12,4 +12,12 @@ const published=existing.flatMap((article,index)=>entries.includes(article)&&!is
 const replacements=patientArticles.map((article,index)=>({...article,image:demos[index]?.image})).filter(article=>!published.some(item=>item.id===article.id));
 saved.articles=demos.length?[...replacements,...published]:saved.articleContentVersion==='1'?published:[...published,...replacements];
 saved.articleContentVersion='2';
-}return {...defaults,...saved,siteText:{...siteTextDefaults,...saved.siteText}};});
+}const faqUpdates = [
+ ['How can I arrange a consultation?', 'Contact details and consultation timings will be added shortly.', 'Visit the Contact page and use the listed phone or WhatsApp option to ask about appointment availability. The clinic can confirm the date, time, location, and what to bring.'],
+ ['Does the practice support children and adolescents?', 'Child and adolescent psychiatry is one of Dr. Srividya’s areas of practice.', 'Yes. Dr. Srividya sees children and adolescents. When arranging a visit, tell the clinic your child’s age and what concerns you. If available, bring relevant school feedback or previous assessment reports.'],
+];
+const faqs:Content['faqs']=(Array.isArray(saved.faqs)?saved.faqs:defaults.faqs).map((faq:Content['faqs'][number])=>{
+ const update=faqUpdates.find(([question,answer])=>faq.question===question&&faq.answer===answer);
+ return update?{...faq,answer:update[2]}:faq;
+});
+return {...defaults,...saved,faqs,siteText:{...siteTextDefaults,...saved.siteText}};});
