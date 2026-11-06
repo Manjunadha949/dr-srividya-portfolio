@@ -13,6 +13,11 @@ if(Number(req.headers.get("content-length")||0)>200000) return Response.json({er
 try {const data:any=await req.json(); if(!data||typeof data!=="object")throw Error("Invalid content");
 for(const platform of socialPlatforms)if(data[platform.key]===undefined)data[platform.key]="";if(data.customLinks===undefined)data.customLinks=[];
 if(data.testimonials===undefined)data.testimonials=[];if(data.siteText===undefined)data.siteText={};if(data.expertiseDetails===undefined)data.expertiseDetails=[];for(const key of ["logo","chatEnabled","chatGreeting","mapEmbedUrl","googleRating","googleReviewCount","bookingPhone","bookingMessage","locationUrl","clinicPhone","clinicAltPhone","clinicEmail","clinicWebsite","hospitalHours"])if(data[key]===undefined)data[key]=(defaults as any)[key];
+data.articleContentVersion='1';
+for(const key of ['heroPhoto','aboutPhoto']){
+if(data[key]===undefined)data[key]='';
+if(typeof data[key]!=='string'||(data[key]&&!/^(https:\/\/|\/[^/])/.test(data[key])))throw Error('Use HTTPS or a local image path for '+key);
+}
 if(!data.siteText||typeof data.siteText!=="object"||Array.isArray(data.siteText)||Object.entries(data.siteText).some(([k,v])=>k.length>100||typeof v!=="string"||v.length>20000))throw Error("Invalid website text");
 for(const [key,value] of Object.entries(defaults)){if(key==="siteText")continue;if(Array.isArray(value)){if(!Array.isArray(data[key])||data[key].length>100)throw Error("Invalid "+key);}else if(typeof data[key]!=="string"||data[key].length>20000)throw Error("Invalid "+key);}
 for(const key of ["adult","child","education","experience"])if(data[key].some((v:unknown)=>typeof v!=="string"))throw Error("Invalid list");
