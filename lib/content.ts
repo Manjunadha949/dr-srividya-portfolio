@@ -4,6 +4,12 @@ import { cache } from 'react';
 import { readStoredContent } from './storage';
 import { defaults,type Content } from './defaults';
 
+const additionalHospitalVideos: Content['videos'] = [
+  { title: "Helping children remember what they study", url: 'https://www.youtube.com/watch?v=xFCquJbhFRE' },
+  { title: "What children can learn from household chores", url: 'https://www.youtube.com/watch?v=kvB6v4oH6ik' },
+  { title: "How much time should students spend studying each day? (Short)", url: 'https://www.youtube.com/shorts/sZFJlU77VAw' },
+];
+
 const hospitalVideos: Content['videos'] = [
   { title: "Five ways to build confidence in children", url: 'https://www.youtube.com/watch?v=YfM7CXPqNAk' },
   { title: "Why do we feel fear?", url: 'https://www.youtube.com/watch?v=kS1rlppziyQ' },
@@ -28,9 +34,14 @@ const published=existing.flatMap((article,index)=>entries.includes(article)&&!is
 const replacements=patientArticles.map((article,index)=>({...article,image:demos[index]?.image})).filter(article=>!published.some(item=>item.id===article.id));
 saved.articles=demos.length?[...replacements,...published]:saved.articleContentVersion==='1'?published:[...published,...replacements];
 saved.articleContentVersion='2';
-}if (saved.videoContentVersion !== '1') {
+}if (saved.videoContentVersion !== '1' && saved.videoContentVersion !== '2') {
   saved.videos = hospitalVideos;
   saved.videoContentVersion = '1';
+}
+if (saved.videoContentVersion === '1') {
+  const videos: Content['videos'] = saved.videos;
+  saved.videos = [...videos, ...additionalHospitalVideos.filter(video => !videos.some(existing => existing.url === video.url))];
+  saved.videoContentVersion = '2';
 }
 const faqUpdates = [
  ['How can I arrange a consultation?', 'Contact details and consultation timings will be added shortly.', 'Visit the Contact page and use the listed phone or WhatsApp option to ask about appointment availability. The clinic can confirm the date, time, location, and what to bring.'],
